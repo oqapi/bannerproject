@@ -1,0 +1,13 @@
+project:
+    project1:
+        project_id: 1
+        name: Project 1
+    project2:
+        project_id: 2
+        name: Project 2
+    project3:
+        project_id: 3
+        name: Project 3
+    project4:
+        project_id: 4
+        name: Project 4
