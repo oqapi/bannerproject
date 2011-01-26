@@ -1,0 +1,16 @@
+Jan 26 12:03:42 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+Jan 26 12:03:42 symfony [info] {myUser} Automatic user logout due to timeout
+Jan 26 12:03:42 symfony [info] {myUser} User is not authenticated
+Jan 26 12:03:42 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Jan 26 12:03:42 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Jan 26 12:03:42 symfony [info] {defaultActions} Call "defaultActions->executeIndex()"
+Jan 26 12:03:42 symfony [info] {sfPHPView} Render "/Users/rory/Sites/sf_sandbox/lib/vendor/symfony/lib/controller/default/templates/indexSuccess.php"
+Jan 26 12:03:43 symfony [info] {sfPHPView} Decorate content with "/Users/rory/Sites/sf_sandbox/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jan 26 12:03:43 symfony [info] {sfPHPView} Render "/Users/rory/Sites/sf_sandbox/lib/vendor/symfony/lib/controller/default/templates/defaultLayout.php"
+Jan 26 12:03:43 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Jan 26 12:03:43 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Jan 26 12:03:43 symfony [info] {sfWebDebugLogger} Configuration 117.34 ms (9)
+Jan 26 12:03:43 symfony [info] {sfWebDebugLogger} Factories 117.07 ms (1)
+Jan 26 12:03:43 symfony [info] {sfWebDebugLogger} Action "default/index" 0.10 ms (1)
+Jan 26 12:03:43 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 65.98 ms (1)
+Jan 26 12:03:43 symfony [info] {sfWebResponse} Send content (29467 o)

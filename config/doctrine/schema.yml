@@ -1,0 +1,13 @@
+project:
+    actAs: { Timestampable: ~ }
+    columns:
+        project_id: { type: integer, notnull: true }
+        name:       { type: string(255), notnull: true, unique: true }
+    relations:
+        banner: { onDelete: CASCADE, local: project_id, foreign: project_id, foreignAlias: banner }
+ 
+banner:
+    actAs: { Timestampable: ~ }
+    columns:
+        project_id: { type: integer, notnull: true }
+        url:          { type: string(255) }
