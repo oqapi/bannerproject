@@ -31,6 +31,20 @@ Banner:
       primary: false
       notnull: false
       autoincrement: false
+  relations:
+    Project: { onDelete: CASCADE, local: project_id, foreign: id, foreignAlias: Projects } 
+
+BannerPosition:
+  connection: doctrine
+  tableName: banner_position
+  columns:
+    banner_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     position_index:
       type: string(22)
       fixed: false
@@ -65,7 +79,24 @@ Banner:
       unsigned: false
       primary: false
   relations:
-    Project: { onDelete: CASCADE, local: project_id, foreign: id, foreignAlias: Projects } 
+    Project: { onDelete: CASCADE, local: banner_id, foreign: id, foreignAlias: Banners } 
+
+ClientBanner:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  tableName: client_banner
+  columns:
+    banner_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    client_text: 
+      type: string(255)
+  relations:
+    Banner: { onDelete: CASCADE, local: banner_id, foreign: id, foreignAlias: Banners } 
 
 Project:
   actAs: { Timestampable: ~ }

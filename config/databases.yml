@@ -2,6 +2,6 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=symfony'
+      dsn: 'mysql:host=localhost;dbname=bannerproject'
       username: root
-      password: root
+      password: joppi3ee
