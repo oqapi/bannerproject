@@ -15,13 +15,13 @@ class bannerForm extends BasebannerForm
     # Configure upload widget
     parent::configure();
 
-    $this->setWidget('url', new sfWidgetFormInputFileEditable(
+    $this->setWidget('image_url', new sfWidgetFormInputFileEditable(
       array(
         'label'       => 'Banner',
-        'file_src'    => '/uploads/'.$this->getObject()->getUrl(),
+        'file_src'    => '/uploads/'.$this->getObject()->getImageUrl(),
       )
     ));
 
-    $this->setValidator('url', new sfValidatorFile(array('path' => 'uploads/')));
+    $this->setValidator('image_url', new sfValidatorFile(array('path' => 'uploads/')));
   }
 }
