@@ -12,15 +12,91 @@ class bannerForm extends BasebannerForm
 {
   public function configure()
   {
-    $this->useFields(array('project_id','image_url','image_text','text_font','position_index','x_start','y_start','x_end','y_end'));
+    #$this->useFields(array('project_id','image_url' ,'image_text','text_font'));
+    unset($this['created_at'], $this['updated_at']);
     # Configure upload widget
     $this->setWidget('image_url', new sfWidgetFormInputFileEditable(
       array(
         'label'       => 'Banner',
-        'file_src'    => '/uploads/'.$this->getObject()->getImageUrl(),
+        'file_src'    => '/uploads/banner/'.$this->getObject()->getImageUrl(),
       )
     ));
-
-    $this->setValidator('image_url', new sfValidatorFile(array('path' => 'uploads/')));
+    $this->validatorSchema['image_url_delete'] = new sfValidatorPass(); 
+    $this->setValidator('image_url', new sfValidatorFile(array(
+      'required'        => false,  
+      'path' => sfConfig::get('sf_upload_dir').'/banner'))
+    );
   }
+
+ protected function doSave ( $con = null )
+  {
+    $object = parent::doSave($con);
+    
+    if ($image = $this->getValue('image_url')) {
+      $this->processImage($image, 'image_url');
+    }
+    if ($this->getValue('image_url_delete')) {
+      $this->removeImage();
+    };
+    
+    return $object;
+  }
+
+  protected function processImage ( sfValidatedFile $file, $object_field){
+    if (!$file->isSaved()) {
+      return;
+    }
+    $object = $this->getObject();
+
+    $filename = basename($file->getSavedName());
+    $filepath = sfConfig::get('sf_upload_dir').'/banner/'.$filename;
+                
+    #get support for layered GIF images
+    #first get rid of old files 
+    $filename = basename($this->getObject()->getImageUrl());
+    $mask = sfConfig::get('sf_upload_dir').sprintf('/banner/frames/*%s',$filename);
+    array_map( "unlink", glob( $mask ) );
+    #and get rid of old bannerpositions
+    $bannerPositions = Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getObject()->getId());
+    foreach ($bannerPositions as $bannerPosition) {
+      $bannerPosition->delete();
+    }
+
+    #see if there are layers
+    include_once ( sfConfig::get('sf_root_dir').'/custom/GIFDecoder.class.php' );
+    $gifDecoder = new GIFDecoder ( fread ( fopen ( $filepath, "rb" ), filesize ( $filepath ) ) );
+    $frames = $gifDecoder -> GIFGetFrames ( );
+    if (count($frames) > 1) {
+      #save frames
+      $i = 1;
+      foreach ( $gifDecoder -> GIFGetFrames ( ) as $frame ) {
+        fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
+        $bannerPosition = new BannerPosition();
+        $bannerPosition->setBannerId($this->getObject()->getId());
+        $bannerPosition->save();
+        $i++;
+      }
+    } else {
+      #create 1 banner_position record
+      $bannerPosition = new BannerPosition();
+      $bannerPosition->setBannerId($this->getObject()->getId());
+      $bannerPosition->save();
+    }
+ 
+  }
+  protected function removeImage(){ 
+    #and get rid of old bannerpositions
+    $bannerPositions = Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getObject()->getId());
+    foreach ($bannerPositions as $bannerPosition) {
+      $bannerPosition->delete();
+    }
+    #get rid of frames (if they exist)
+    $filename = basename($this->getObject()->getImageUrl());
+    $mask = sfConfig::get('sf_upload_dir').sprintf('/banner/frames/*%s',$filename);
+    array_map( "unlink", glob( $mask ) );
+  }
+ 
+
+
+
 }

@@ -19,10 +19,7 @@ abstract class BaseBannerForm extends BaseFormDoctrine
       'project_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => false)),
       'image_url'  => new sfWidgetFormInputText(),
       'image_text' => new sfWidgetFormInputText(),
-      'x_start'    => new sfWidgetFormInputText(),
-      'y_start'    => new sfWidgetFormInputText(),
-      'x_end'      => new sfWidgetFormInputText(),
-      'y_end'      => new sfWidgetFormInputText(),
+      'text_font'  => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -32,10 +29,7 @@ abstract class BaseBannerForm extends BaseFormDoctrine
       'project_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'))),
       'image_url'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'image_text' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'x_start'    => new sfValidatorInteger(array('required' => false)),
-      'y_start'    => new sfValidatorInteger(array('required' => false)),
-      'x_end'      => new sfValidatorInteger(array('required' => false)),
-      'y_end'      => new sfValidatorInteger(array('required' => false)),
+      'text_font'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
     ));
