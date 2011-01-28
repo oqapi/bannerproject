@@ -1,13 +1,8 @@
 Banner:
+  actAs: { Timestampable: ~ }
   connection: doctrine
   tableName: banner
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
     project_id:
       type: integer(8)
       fixed: false
@@ -59,15 +54,10 @@ Banner:
     Project: { onDelete: CASCADE, local: project_id, foreign: id, foreignAlias: Projects } 
 
 Project:
+  actAs: { Timestampable: ~ }
   connection: doctrine
   tableName: project
   columns:
-    id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: true
     name:
       type: string(255)
       fixed: false
@@ -88,18 +78,4 @@ Project:
       unsigned: false
       primary: false
       notnull: false
-      autoincrement: false
-    created_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    updated_at:
-      type: timestamp(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
       autoincrement: false
