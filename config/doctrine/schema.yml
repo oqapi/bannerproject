@@ -15,27 +15,49 @@ Banner:
       primary: false
       notnull: true
       autoincrement: false
-    url:
+    image_url:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    created_at:
-      type: timestamp(25)
+    image_text:
+      type: string(255)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
-    updated_at:
-      type: timestamp(25)
+    x_start:
+      type: integer(8)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
+    y_start:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    x_end:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    y_end:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+  relations:
+    Project: { onDelete: CASCADE, local: project_id, foreign: id, foreignAlias: Projects } 
+
 Project:
   connection: doctrine
   tableName: project
@@ -46,19 +68,26 @@ Project:
       unsigned: false
       primary: true
       autoincrement: true
-    project_id:
-      type: integer(8)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
     name:
       type: string(255)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
+      autoincrement: false
+    url:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    header:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
       autoincrement: false
     created_at:
       type: timestamp(25)
