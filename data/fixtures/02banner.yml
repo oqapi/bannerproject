@@ -1,0 +1,13 @@
+banner:
+  1:
+    project_id: 1
+    image_url: banner1
+  2:
+    project_id: 2
+    image_url: banner2
+  3:
+    project_id: 3
+    image_url: banner3
+  4:
+    project_id: 4
+    image_url:  banner4
