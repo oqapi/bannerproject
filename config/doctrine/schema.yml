@@ -24,6 +24,20 @@ Banner:
       primary: false
       notnull: false
       autoincrement: false
+    text_font:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    position_index:
+      type: string(22)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     x_start:
       type: integer(8)
       fixed: false
