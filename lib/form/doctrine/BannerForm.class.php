@@ -12,9 +12,8 @@ class bannerForm extends BasebannerForm
 {
   public function configure()
   {
+    $this->useFields(array('project_id','image_url','image_text','text_font','position_index','x_start','y_start','x_end','y_end'));
     # Configure upload widget
-    parent::configure();
-
     $this->setWidget('image_url', new sfWidgetFormInputFileEditable(
       array(
         'label'       => 'Banner',
