@@ -1,14 +1,14 @@
 <?php
 
 /**
- * project filter form.
+ * Banner filter form.
  *
  * @package    sf_sandbox
  * @subpackage filter
- * @author     Your name here
+ * @author     Joeri de Bruin
  * @version    SVN: $Id: sfDoctrineFormFilterTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class projectFormFilter extends BaseprojectFormFilter
+class BannerFormFilter extends BaseBannerFormFilter
 {
   public function configure()
   {
