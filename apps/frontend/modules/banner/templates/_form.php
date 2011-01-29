@@ -21,4 +21,16 @@
       <?php echo $form ?>
     </tbody>
   </table>
+  <table>
+    <?php
+    $bannerPositions =
+    Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($form->getObject()->getId());
+    foreach ($bannerPositions as $bannerPosition) { ?>
+    <tr>
+      <td>
+        <?php echo link_to('edit','bannerposition/edit?id='.$bannerPosition->getId()); ?><img src="<?php echo $bannerPosition->showBannerPositionImage(); ?>">
+      </td>
+    </tr>
+    <?php } ?>
+  </table>
 </form>

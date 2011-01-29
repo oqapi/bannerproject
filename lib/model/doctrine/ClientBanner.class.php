@@ -12,4 +12,87 @@
  */
 class ClientBanner extends BaseClientBanner
 {
+  public function save(Doctrine_Connection $conn = null)
+  {
+    // create the clientbanner
+    $banner = $this->getBanner();
+    $bannerPositions =
+    Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getId());
+    include_once ( sfConfig::get('sf_root_dir').'/custom/GIFEncoder.class.php' );
+    //first copy source files to clientbanner
+    $dirHandle=opendir($banner->getFrameDir()); 
+    while($file=readdir($dirHandle)) 
+    { 
+      if($file!="." && $file!=".." && (strpos($file,$banner->getFileName())>0)) 
+      { 
+        copy($banner->getFrameDir().$file,$this->getFrameDir().$file);
+      }
+    }  
+    closedir($dirHandle); 
+
+    foreach ($bannerPositions as $bannerPosition) {
+      $positionIndex = $bannerPosition->getPositionIndex();
+      //add text
+      $im = imagecreatefromgif($this->getFramePath($positionIndex,$banner));
+      $w = imagesx($im);
+      $h = imagesy($im);
+      $text = imagecreatetruecolor($w, $h);
+      imagestring($text, 5, 0, 0, $this->getClientText(), 0xFFFFFF);
+      imagecopymerge($im, $text, 0, 0, 0, 0, $w, $h, 50);
+      imagegif($im,$this->getFramePath($positionIndex,$banner));
+      imagedestroy($im);
+      $frames[] = $this->getFramePath($positionIndex,$banner);  
+      $framed[] = 5; //get delaytimes from original!!!!
+    }
+    $gif = new GIFEncoder    ( 
+                            $frames, 
+                            $framed, 
+                            0, 
+                            2, 
+                            0, 0, 0, 
+                            "url" 
+        ); 
+    fwrite ( fopen ( $this->getPath(), "wb" ), $gif->GetAnimation ( ) ); 
+    return parent::save($conn);
+  }
+
+  public function getUrl(){
+    $url = sprintf('/banner/client/%s/%s',$this->sha1ClientText(),$this->getBanner()->getImageUrl());
+    return '/uploads'.$url;
+  }
+
+  public function getFrameUrl($positionIndex){
+    $url = sprintf('/banner/client/%s/frames/%03d%s',$this->sha1ClientText(),$positionIndex(),$this->getBanner()->getImageUrl());
+    return '/uploads'.$url;
+  }
+
+  public function getPath($positionIndex){
+    $dir = sfConfig::get('sf_upload_dir').sprintf('/banner/client/%s/',$this->sha1ClientText());
+    if (!is_dir($dir)){
+      //create the dir
+      mkdir($dir);
+      mkdir($dir.'/frames');
+    }
+    return $dir.$this->getBanner()->getImageUrl();
+  }
+
+  public function getFramePath($positionIndex){
+    $dir = sfConfig::get('sf_upload_dir').sprintf('/banner/client/%s/frames/',$this->sha1ClientText());
+    $path = $dir.sprintf('%03d%s',$positionIndex,$this->getBanner()->getImageUrl());
+    return $path;
+  }
+
+  public function getFrameDir(){
+    $url = sprintf('/banner/client/%s/frames/',$this->sha1ClientText());
+    return sfConfig::get('sf_upload_dir').$url;
+  }
+  
+  public function sha1ClientText(){
+    return sha1($this->getClientText());
+  }
+
+  public function getBanner(){
+    $banner = Doctrine_Core::getTable('Banner')->find(array($this->getBannerId()));
+    return $banner;
+  }
 }

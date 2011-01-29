@@ -19,11 +19,13 @@ class bannerForm extends BasebannerForm
       array(
         'label'       => 'Banner',
         'file_src'    => '/uploads/banner/'.$this->getObject()->getImageUrl(),
+        'is_image' => true,
       )
     ));
     $this->validatorSchema['image_url_delete'] = new sfValidatorPass(); 
     $this->setValidator('image_url', new sfValidatorFile(array(
       'required'        => false,  
+      'mime_types' => 'web_images',
       'path' => sfConfig::get('sf_upload_dir').'/banner'))
     );
   }
@@ -68,22 +70,25 @@ class bannerForm extends BasebannerForm
     $frames = $gifDecoder -> GIFGetFrames ( );
     if (count($frames) > 1) {
       #save frames
-      $i = 1;
+      $i = 0;
       foreach ( $gifDecoder -> GIFGetFrames ( ) as $frame ) {
         fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
         $bannerPosition = new BannerPosition();
+        $bannerPosition->setPositionIndex($i);
         $bannerPosition->setBannerId($this->getObject()->getId());
         $bannerPosition->save();
         $i++;
       }
     } else {
       #create 1 banner_position record
+      fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ),$filePath );
       $bannerPosition = new BannerPosition();
       $bannerPosition->setBannerId($this->getObject()->getId());
       $bannerPosition->save();
     }
  
   }
+  
   protected function removeImage(){ 
     #and get rid of old bannerpositions
     $bannerPositions = Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getObject()->getId());

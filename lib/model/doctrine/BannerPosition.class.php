@@ -12,4 +12,23 @@
  */
 class BannerPosition extends BaseBannerPosition
 {
+    public function showBannerPositionImage(){
+       $banner = Doctrine_Core::getTable('Banner')->find(array($this->getBannerId()));
+       $url = sprintf('/uploads/banner/frames/%03d%s',$this->getPositionIndex(),$banner->getImageUrl());
+       return $url;
+    }
+    
+    public function showTestImage(){
+       $banner = Doctrine_Core::getTable('Banner')->find(array($this->getBannerId()));
+       $url = sprintf('/banner/client/%s/frames/%03d%s',$banner->sha1ImageText(),$this->getPositionIndex(),$banner->getImageUrl());
+       if (!file_exists(sfConfig::get('sf_upload_dir').$url)) {
+         //create new test banner
+         $clientBanner = new ClientBanner();
+         $clientBanner->setClientText($banner->getImageText());
+         $clientBanner->setBannerId($banner->getId());
+         $clientBanner->save();
+       }
+       return '/uploads'.$url;
+    }
+
 }

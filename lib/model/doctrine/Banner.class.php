@@ -12,4 +12,16 @@
  */
 class Banner extends BaseBanner
 {
+  public function sha1ImageText(){
+    return sha1($this->getImageText());   
+  }
+
+  public function getFrameDir(){
+    $url = sfConfig::get('sf_upload_dir').sprintf('/banner/frames/');
+    return $url;
+  }
+
+  public function getFileName(){
+    return basename($this->getImageUrl());
+  }
 }

@@ -16,4 +16,13 @@ class ClientBannerTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('ClientBanner');
     }
+
+    public function getClientBannerByClientText($clientText)
+    {
+      $q = $this->createQuery('j')
+        ->where('j.client_text = ?',$clientText);
+
+      return $q->execute();
+    }
+
 }

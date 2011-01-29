@@ -16,12 +16,13 @@ class BannerPositionTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('BannerPosition');
     }
-  public function getBannerPositionsFromBanner($banner)
-  {
-    $q = $this->createQuery('j')
-      ->where('j.banner_id = ?',$banner);
+  
+    public function getBannerPositionsFromBanner($banner)
+    {
+      $q = $this->createQuery('j')
+        ->where('j.banner_id = ?',$banner);
  
-    return $q->execute();
-  }
+      return $q->execute();
+    }
 
 }
