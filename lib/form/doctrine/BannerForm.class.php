@@ -69,12 +69,18 @@ class bannerForm extends BasebannerForm
     $gifDecoder = new GIFDecoder ( fread ( fopen ( $filepath, "rb" ), filesize ( $filepath ) ) );
     $frames = $gifDecoder -> GIFGetFrames ( );
     $delays = $gifDecoder -> GIFGetDelays ( );
-    if (count($frames) > 1) {
+    $i = 0;
+    #if (count($frames) > 1) {
       #save frames
-      $i = 0;
       foreach ( $gifDecoder -> GIFGetFrames ( ) as $frame ) {
         $delay = $delays[$i];
-        fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
+        #fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
+        $im = imagecreatefromstring($frame);
+        error_log(imagesx($im));
+        imagealphablending($im, true);
+        error_log(imagesx($im));
+
+        imagegif($im, sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) );
         $bannerPosition = new BannerPosition();
         $bannerPosition->setPositionIndex($i);
         $bannerPosition->setDelay($delay);
@@ -83,13 +89,13 @@ class bannerForm extends BasebannerForm
         $bannerPosition->save();
         $i++;
       }
-    } else {
-      #create 1 banner_position record
-      fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ),$filePath );
-      $bannerPosition = new BannerPosition();
-      $bannerPosition->setBannerId($this->getObject()->getId());
-      $bannerPosition->save();
-    }
+    #} else {
+    #  #create 1 banner_position record
+    #  fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ),$filepath );
+    #  $bannerPosition = new BannerPosition();
+    #  $bannerPosition->setBannerId($this->getObject()->getId());
+    #  $bannerPosition->save();
+    #}
  
   }
   
