@@ -24,6 +24,7 @@ class BannerPosition extends BaseBannerPosition
        if (!file_exists(sfConfig::get('sf_upload_dir').$url)) {
          //create new test banner
          $client = new Client();
+         $client->setProjectId($banner->getProjectId());
          $client->setClientText($banner->getImageText());
          $client->save();
        }

@@ -25,4 +25,12 @@ class BannerPositionTable extends Doctrine_Table
       return $q->execute();
     }
 
+    public function getBannerPositionsFromClient($clientId)
+    {
+      $q = $this->createQuery('j')
+        ->where('j.client_id = ?',$clientId);
+ 
+      return $q->execute();
+    }
+
 }

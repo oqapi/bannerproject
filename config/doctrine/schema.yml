@@ -81,15 +81,24 @@ BannerPosition:
       notnull: false
       autoincrement: false
   relations:
-    Project: { onDelete: CASCADE, local: banner_id, foreign: id, foreignAlias: Banners } 
+    Banner: { onDelete: CASCADE, local: banner_id, foreign: id, foreignAlias: Banners } 
 
 Client:
   actAs: { Timestampable: ~ }
   connection: doctrine
   tableName: client
   columns:
+    project_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
     client_text: 
       type: string(255)
+  relations:
+    Project: { onDelete: CASCADE, local: project_id, foreign: id, foreignAlias: Projects } 
 
 ClientBanner:
   actAs: { Timestampable: ~ }

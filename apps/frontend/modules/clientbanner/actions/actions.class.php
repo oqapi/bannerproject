@@ -73,7 +73,7 @@ class clientbannerActions extends sfActions
     {
       $client_banner = $form->save();
 
-  #    $this->redirect('clientbanner/edit?id='.$client_banner->getId());
+      $this->redirect('clientbanner/edit?id='.$client_banner->getId());
     }
   }
 }

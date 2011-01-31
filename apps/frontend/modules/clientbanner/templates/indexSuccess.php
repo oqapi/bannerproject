@@ -5,7 +5,7 @@
     <tr>
       <th>Id</th>
       <th>Banner</th>
-      <th>Client text</th>
+      <th>Client</th>
       <th>Created at</th>
       <th>Updated at</th>
     </tr>
@@ -15,7 +15,7 @@
     <tr>
       <td><a href="<?php echo url_for('clientbanner/show?id='.$client_banner->getId()) ?>"><?php echo $client_banner->getId() ?></a></td>
       <td><?php echo $client_banner->getBannerId() ?></td>
-      <td><?php echo $client_banner->getClientText() ?></td>
+      <td><?php echo $client_banner->getClientId() ?></td>
       <td><?php echo $client_banner->getCreatedAt() ?></td>
       <td><?php echo $client_banner->getUpdatedAt() ?></td>
     </tr>

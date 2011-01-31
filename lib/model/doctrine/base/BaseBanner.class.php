@@ -107,7 +107,7 @@ abstract class BaseBanner extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
 
-        $this->hasMany('ClientBanner as Banners', array(
+        $this->hasMany('BannerPosition as Banners', array(
              'local' => 'id',
              'foreign' => 'banner_id'));
 

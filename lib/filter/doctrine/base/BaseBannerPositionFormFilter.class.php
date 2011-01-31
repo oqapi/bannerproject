@@ -13,14 +13,14 @@ abstract class BaseBannerPositionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'banner_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true)),
+      'banner_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Banner'), 'add_empty' => true)),
       'position_index' => new sfWidgetFormFilterInput(),
       'x_position'     => new sfWidgetFormFilterInput(),
       'y_position'     => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'banner_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Project'), 'column' => 'id')),
+      'banner_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Banner'), 'column' => 'id')),
       'position_index' => new sfValidatorPass(array('required' => false)),
       'x_position'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'y_position'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),

@@ -11,18 +11,15 @@ Doctrine_Manager::getInstance()->bindComponent('Project', 'doctrine');
  * @property string $url
  * @property string $header
  * @property Doctrine_Collection $Projects
- * @property Doctrine_Collection $Banners
  * 
  * @method string              getName()     Returns the current record's "name" value
  * @method string              getUrl()      Returns the current record's "url" value
  * @method string              getHeader()   Returns the current record's "header" value
  * @method Doctrine_Collection getProjects() Returns the current record's "Projects" collection
- * @method Doctrine_Collection getBanners()  Returns the current record's "Banners" collection
  * @method Project             setName()     Sets the current record's "name" value
  * @method Project             setUrl()      Sets the current record's "url" value
  * @method Project             setHeader()   Sets the current record's "header" value
  * @method Project             setProjects() Sets the current record's "Projects" collection
- * @method Project             setBanners()  Sets the current record's "Banners" collection
  * 
  * @package    sf_sandbox
  * @subpackage model
@@ -69,10 +66,6 @@ abstract class BaseProject extends sfDoctrineRecord
         $this->hasMany('Banner as Projects', array(
              'local' => 'id',
              'foreign' => 'project_id'));
-
-        $this->hasMany('BannerPosition as Banners', array(
-             'local' => 'id',
-             'foreign' => 'banner_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

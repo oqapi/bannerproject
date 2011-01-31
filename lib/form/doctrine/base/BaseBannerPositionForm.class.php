@@ -16,7 +16,7 @@ abstract class BaseBannerPositionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'             => new sfWidgetFormInputHidden(),
-      'banner_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => false)),
+      'banner_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Banner'), 'add_empty' => false)),
       'position_index' => new sfWidgetFormInputText(),
       'x_position'     => new sfWidgetFormInputText(),
       'y_position'     => new sfWidgetFormInputText(),
@@ -24,7 +24,7 @@ abstract class BaseBannerPositionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'banner_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'))),
+      'banner_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Banner'))),
       'position_index' => new sfValidatorString(array('max_length' => 22, 'required' => false)),
       'x_position'     => new sfValidatorInteger(array('required' => false)),
       'y_position'     => new sfValidatorInteger(array('required' => false)),

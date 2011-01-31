@@ -11,18 +11,18 @@ Doctrine_Manager::getInstance()->bindComponent('BannerPosition', 'doctrine');
  * @property string $position_index
  * @property integer $x_position
  * @property integer $y_position
- * @property Project $Project
+ * @property Banner $Banner
  * 
  * @method integer        getBannerId()       Returns the current record's "banner_id" value
  * @method string         getPositionIndex()  Returns the current record's "position_index" value
  * @method integer        getXPosition()      Returns the current record's "x_position" value
  * @method integer        getYPosition()      Returns the current record's "y_position" value
- * @method Project        getProject()        Returns the current record's "Project" value
+ * @method Banner         getBanner()         Returns the current record's "Banner" value
  * @method BannerPosition setBannerId()       Sets the current record's "banner_id" value
  * @method BannerPosition setPositionIndex()  Sets the current record's "position_index" value
  * @method BannerPosition setXPosition()      Sets the current record's "x_position" value
  * @method BannerPosition setYPosition()      Sets the current record's "y_position" value
- * @method BannerPosition setProject()        Sets the current record's "Project" value
+ * @method BannerPosition setBanner()         Sets the current record's "Banner" value
  * 
  * @package    sf_sandbox
  * @subpackage model
@@ -75,7 +75,7 @@ abstract class BaseBannerPosition extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('Project', array(
+        $this->hasOne('Banner', array(
              'local' => 'banner_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));

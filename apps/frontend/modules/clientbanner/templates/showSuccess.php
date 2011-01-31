@@ -9,8 +9,8 @@
       <td><?php echo $client_banner->getBannerId() ?></td>
     </tr>
     <tr>
-      <th>Client text:</th>
-      <td><?php echo $client_banner->getClientText() ?></td>
+      <th>Client:</th>
+      <td><?php echo $client_banner->getClientId() ?></td>
     </tr>
     <tr>
       <th>Created at:</th>
