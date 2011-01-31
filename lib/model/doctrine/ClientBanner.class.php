@@ -19,6 +19,12 @@ class ClientBanner extends BaseClientBanner
     $bannerPositions =
     Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getId());
     include_once ( sfConfig::get('sf_root_dir').'/custom/GIFEncoder.class.php' );
+    $dir = sfConfig::get('sf_upload_dir').sprintf('/banner/client/%s/',$this->sha1ClientText());
+    if (!is_dir($dir)){
+      //create the dir
+      mkdir($dir);
+      mkdir($dir.'/frames');
+    }
     //first copy source files to clientbanner
     $dirHandle=opendir($banner->getFrameDir()); 
     while($file=readdir($dirHandle)) 
@@ -78,11 +84,6 @@ class ClientBanner extends BaseClientBanner
 
   public function getPath(){
     $dir = sfConfig::get('sf_upload_dir').sprintf('/banner/client/%s/',$this->sha1ClientText());
-    if (!is_dir($dir)){
-      //create the dir
-      mkdir($dir);
-      mkdir($dir.'/frames');
-    }
     return $dir.$this->getBanner()->getImageUrl();
   }
 
