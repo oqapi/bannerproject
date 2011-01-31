@@ -23,10 +23,9 @@ class BannerPosition extends BaseBannerPosition
        $url = sprintf('/banner/client/%s/frames/%03d%s',$banner->sha1ImageText(),$this->getPositionIndex(),$banner->getImageUrl());
        if (!file_exists(sfConfig::get('sf_upload_dir').$url)) {
          //create new test banner
-         $clientBanner = new ClientBanner();
-         $clientBanner->setClientText($banner->getImageText());
-         $clientBanner->setBannerId($banner->getId());
-         $clientBanner->save();
+         $client = new Client();
+         $client->setClientText($banner->getImageText());
+         $client->save();
        }
        return '/uploads'.$url;
     }
