@@ -36,11 +36,21 @@ class ClientBanner extends BaseClientBanner
       $im = imagecreatefromgif($this->getFramePath($positionIndex,$banner));
       $w = imagesx($im);
       $h = imagesy($im);
-      $text = imagecreatetruecolor($w, $h);
-      imagestring($text, 5, 0, 0, $this->getClientText(), 0xFFFFFF);
-      imagecopymerge($im, $text, 0, 0, 0, 0, $w, $h, 50);
+      #$text = imagecreatetruecolor($w, $h);
+      #imagesavealpha($text, true);
+      #$trans_colour = imagecolorallocatealpha($text, 0, 0, 0, 127);
+      #imagefill($text, 0, 0, $trans_colour);
+
+      #imagestring($text, 5, 0, 0, $this->getClientText(), 0xFFFFFF);
+      #imagecopymerge($im, $text, 0, 0, 0, 0, $w, $h, 100);
+      $text_color = imagecolorallocate($im, 0, 0, 0);
+      $font = '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf';
+      $fontSize = 17;
+      imagettftext($im, $fontSize, 0, $y, $y + $fontSize, $text_color, $font,  $this->getClientText());
+
       imagegif($im,$this->getFramePath($positionIndex,$banner));
       imagedestroy($im);
+
       $frames[] = $this->getFramePath($positionIndex,$banner);  
       $framed[] = 5; //get delaytimes from original!!!!
     }
@@ -66,7 +76,7 @@ class ClientBanner extends BaseClientBanner
     return '/uploads'.$url;
   }
 
-  public function getPath($positionIndex){
+  public function getPath(){
     $dir = sfConfig::get('sf_upload_dir').sprintf('/banner/client/%s/',$this->sha1ClientText());
     if (!is_dir($dir)){
       //create the dir
