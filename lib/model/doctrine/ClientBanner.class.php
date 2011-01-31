@@ -17,7 +17,7 @@ class ClientBanner extends BaseClientBanner
     // create the clientbanner
     $banner = $this->getBanner();
     $bannerPositions =
-    Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getId());
+    Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getBannerId());
     include_once ( sfConfig::get('sf_root_dir').'/custom/GIFEncoder.class.php' );
     $dir = sfConfig::get('sf_upload_dir').sprintf('/banner/client/%s/',$this->sha1ClientText());
     if (!is_dir($dir)){
@@ -42,17 +42,12 @@ class ClientBanner extends BaseClientBanner
       $im = imagecreatefromgif($this->getFramePath($positionIndex,$banner));
       $w = imagesx($im);
       $h = imagesy($im);
-      #$text = imagecreatetruecolor($w, $h);
-      #imagesavealpha($text, true);
-      #$trans_colour = imagecolorallocatealpha($text, 0, 0, 0, 127);
-      #imagefill($text, 0, 0, $trans_colour);
-
-      #imagestring($text, 5, 0, 0, $this->getClientText(), 0xFFFFFF);
-      #imagecopymerge($im, $text, 0, 0, 0, 0, $w, $h, 100);
-      $text_color = imagecolorallocate($im, 0, 0, 0);
+      $text_color = imagecolorallocate($im, 0, 0, 1);
       $font = '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf';
-      $fontSize = 17;
-      imagettftext($im, $fontSize, 0, $y, $y + $fontSize, $text_color, $font,  $this->getClientText());
+      $fontSize = $banner->getFontSize();
+      $x = $bannerPosition->getXPosition();
+      $y = $bannerPosition->getYPosition();
+      imagettftext($im, $fontSize, 0, $x, $y + $fontSize, $text_color, $font,  $this->getClientText());
 
       imagegif($im,$this->getFramePath($positionIndex,$banner));
       imagedestroy($im);
