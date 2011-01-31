@@ -17,7 +17,7 @@
   <tbody>
     <?php foreach ($banners as $banner): ?>
     <tr>
-      <td><a href="<?php echo url_for('banner/show?id='.$banner->getId()) ?>"><?php echo $banner->getId() ?></a></td>
+      <td><a href="<?php echo url_for('banner/edit?id='.$banner->getId()) ?>"><?php echo $banner->getId() ?></a></td>
       <td><?php echo $banner->getProjectId() ?></td>
       <td><?php echo $banner->getImageUrl() ?></td>
       <td><?php echo $banner->getImageText() ?></td>
