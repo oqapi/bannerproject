@@ -60,7 +60,21 @@ BannerPosition:
       notnull: true
       autoincrement: false
     position_index:
-      type: string(22)
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    delay:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    show_label:
+      type: integer(1)
       fixed: false
       unsigned: false
       primary: false

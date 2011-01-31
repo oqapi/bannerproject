@@ -25,5 +25,4 @@
   <img src="<?php echo $form->getObject()->showOriginalBanner(); ?>">
   <img src="<?php echo $form->getObject()->showBannerPositionImage(); ?>">
   <img src="<?php echo $form->getObject()->showTestImage(); ?>">
-
 </form>

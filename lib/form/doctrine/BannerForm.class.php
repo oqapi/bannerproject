@@ -68,13 +68,17 @@ class bannerForm extends BasebannerForm
     include_once ( sfConfig::get('sf_root_dir').'/custom/GIFDecoder.class.php' );
     $gifDecoder = new GIFDecoder ( fread ( fopen ( $filepath, "rb" ), filesize ( $filepath ) ) );
     $frames = $gifDecoder -> GIFGetFrames ( );
+    $delays = $gifDecoder -> GIFGetDelays ( );
     if (count($frames) > 1) {
       #save frames
       $i = 0;
       foreach ( $gifDecoder -> GIFGetFrames ( ) as $frame ) {
+        $delay = $delays[$i];
         fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
         $bannerPosition = new BannerPosition();
         $bannerPosition->setPositionIndex($i);
+        $bannerPosition->setDelay($delay);
+        $bannerPosition->setShowLabel(0);
         $bannerPosition->setBannerId($this->getObject()->getId());
         $bannerPosition->save();
         $i++;

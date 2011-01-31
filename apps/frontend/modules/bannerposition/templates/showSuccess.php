@@ -13,6 +13,14 @@
       <td><?php echo $banner_position->getPositionIndex() ?></td>
     </tr>
     <tr>
+      <th>Delay:</th>
+      <td><?php echo $banner_position->getDelay() ?></td>
+    </tr>
+    <tr>
+      <th>Show label:</th>
+      <td><?php echo $banner_position->getShowLabel() ?></td>
+    </tr>
+    <tr>
       <th>X position:</th>
       <td><?php echo $banner_position->getXPosition() ?></td>
     </tr>
