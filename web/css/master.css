@@ -1,6 +1,6 @@
 /*
 Title:        Master styles for screen media
-
+Author:     Thanks to Cederholm
 */
 
 /* RESET
@@ -72,6 +72,13 @@ float:left;
 width:60%;
 }
 
+.placementtips {
+float:left;
+width:80%;
+margin: 0 10%;
+display:inline;
+}
+
 .banner {
 float:left;
 width: 36%;
@@ -87,6 +94,7 @@ width: 44%;
 float:left;
 width: 44%;
 margin-right:3%;
+text-align:left;
 }
 
 .halfr {
@@ -95,9 +103,10 @@ width: 34%;
 margin-left:3%;
 padding-left:10%;
 border-left: 1px solid #dedede;
+text-align:left;
 }
 
-.actionbox {
+.actionbox, .bannerdownload {
 float:left;
 width:89%;
 padding:2em 0;
@@ -110,6 +119,11 @@ border-radius:10px;
 }
 
 
+.bannerdownload {
+   text-align:center;
+}
+
+
 /* main styles
 --------------------------------------------- */
 
@@ -119,11 +133,11 @@ position:relative;
 right:20px;
 }
 
-.benefits ul {
+.benefits ul, .placementtips ul {
    margin:1.4em 0 1em 0;
 }
 
-.benefits li {
+.benefits li, .placementtips li {
    font-size:2.1em;
    font-weight:bold;
    color:#222;
@@ -131,19 +145,38 @@ right:20px;
    padding:7px 0 7px 34px;
 }
 
+.placementtips ul {
+   float:left;
+   width:45%;
+}
 
 
-.actionbox ol {
+.actionbox ol, .bannerdownload ul {
 padding-left:2em;
 }
 
 
-.actionbox ol li {
-font-size: 1.4em;
+.actionbox ol li, .bannerdownload ul li {
+font-size: 1.5em;
 list-style:decimal;
 margin-left:20px;
-padding:1em 0 0 0;
+padding:0.8em 0 0 0;
 }
+
+.bannerdownload ul li {
+list-style:circle;
+}
+
+   .bannerdownload img{
+margin-bottom:2em;
+}
+
+.bannerdownload ul li.or {
+list-style:none;
+font-weight:bold;
+font-size:1.4em;
+}
+
 
    .actionbox fieldset label {
    font-size: 2em;
@@ -187,16 +220,23 @@ background: #7dde5c url(glass.png) repeat-x 0 50%;
    padding-top:0.2em;
    }
 
+textarea {
+   width:100%;
+   height:100px;
+   background:#efefef;
+   margin-bottom:1em;
+}
+
 
 /* headings */
 
 h1 {
    font-size:3em;
-   text-align:center;;
+   text-align:center;
    padding: 0.6em 0 0.9em 0;
 }
 
-.benefits h2 {
+.benefits h2, .placementtips h2 {
    margin: 0;
    padding: 0 0 0 0;
    line-height:1em;
