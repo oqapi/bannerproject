@@ -8,6 +8,8 @@
       <th>Image url</th>
       <th>Image text</th>
       <th>Text font</th>
+      <th>Text color</th>
+      <th>Font size</th>
       <th>Created at</th>
       <th>Updated at</th>
     </tr>
@@ -20,6 +22,8 @@
       <td><?php echo $banner->getImageUrl() ?></td>
       <td><?php echo $banner->getImageText() ?></td>
       <td><?php echo $banner->getTextFont() ?></td>
+      <td><?php echo $banner->getTextColor() ?></td>
+      <td><?php echo $banner->getFontSize() ?></td>
       <td><?php echo $banner->getCreatedAt() ?></td>
       <td><?php echo $banner->getUpdatedAt() ?></td>
     </tr>

@@ -24,4 +24,8 @@ class Banner extends BaseBanner
   public function getFileName(){
     return basename($this->getImageUrl());
   }
+
+  public function getImageUrlAbsolute(){
+    return '/uploads/banner/'.$this->getImageUrl();
+  }
 }

@@ -9,25 +9,19 @@ Doctrine_Manager::getInstance()->bindComponent('BannerPosition', 'doctrine');
  * 
  * @property integer $banner_id
  * @property string $position_index
- * @property integer $x_start
- * @property integer $y_start
- * @property integer $x_end
- * @property integer $y_end
+ * @property integer $x_position
+ * @property integer $y_position
  * @property Project $Project
  * 
  * @method integer        getBannerId()       Returns the current record's "banner_id" value
  * @method string         getPositionIndex()  Returns the current record's "position_index" value
- * @method integer        getXStart()         Returns the current record's "x_start" value
- * @method integer        getYStart()         Returns the current record's "y_start" value
- * @method integer        getXEnd()           Returns the current record's "x_end" value
- * @method integer        getYEnd()           Returns the current record's "y_end" value
+ * @method integer        getXPosition()      Returns the current record's "x_position" value
+ * @method integer        getYPosition()      Returns the current record's "y_position" value
  * @method Project        getProject()        Returns the current record's "Project" value
  * @method BannerPosition setBannerId()       Sets the current record's "banner_id" value
  * @method BannerPosition setPositionIndex()  Sets the current record's "position_index" value
- * @method BannerPosition setXStart()         Sets the current record's "x_start" value
- * @method BannerPosition setYStart()         Sets the current record's "y_start" value
- * @method BannerPosition setXEnd()           Sets the current record's "x_end" value
- * @method BannerPosition setYEnd()           Sets the current record's "y_end" value
+ * @method BannerPosition setXPosition()      Sets the current record's "x_position" value
+ * @method BannerPosition setYPosition()      Sets the current record's "y_position" value
  * @method BannerPosition setProject()        Sets the current record's "Project" value
  * 
  * @package    sf_sandbox
@@ -58,7 +52,7 @@ abstract class BaseBannerPosition extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 22,
              ));
-        $this->hasColumn('x_start', 'integer', 8, array(
+        $this->hasColumn('x_position', 'integer', 8, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
@@ -67,29 +61,13 @@ abstract class BaseBannerPosition extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 8,
              ));
-        $this->hasColumn('y_start', 'integer', 8, array(
+        $this->hasColumn('y_position', 'integer', 8, array(
              'type' => 'integer',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 8,
-             ));
-        $this->hasColumn('x_end', 'integer', 8, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 8,
-             ));
-        $this->hasColumn('y_end', 'integer', 8, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
              'length' => 8,
              ));
     }

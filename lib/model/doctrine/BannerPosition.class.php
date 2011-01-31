@@ -31,4 +31,8 @@ class BannerPosition extends BaseBannerPosition
        return '/uploads'.$url;
     }
 
+    public function showOriginalBanner(){
+      $banner = Doctrine_Core::getTable('Banner')->find(array($this->getBannerId()));
+      return $banner->getImageUrlAbsolute();
+    }
 }

@@ -15,19 +15,15 @@ abstract class BaseBannerPositionFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'banner_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true)),
       'position_index' => new sfWidgetFormFilterInput(),
-      'x_start'        => new sfWidgetFormFilterInput(),
-      'y_start'        => new sfWidgetFormFilterInput(),
-      'x_end'          => new sfWidgetFormFilterInput(),
-      'y_end'          => new sfWidgetFormFilterInput(),
+      'x_position'     => new sfWidgetFormFilterInput(),
+      'y_position'     => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
       'banner_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Project'), 'column' => 'id')),
       'position_index' => new sfValidatorPass(array('required' => false)),
-      'x_start'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'y_start'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'x_end'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'y_end'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'x_position'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'y_position'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('banner_position_filters[%s]');
@@ -50,10 +46,8 @@ abstract class BaseBannerPositionFormFilter extends BaseFormFilterDoctrine
       'id'             => 'Number',
       'banner_id'      => 'ForeignKey',
       'position_index' => 'Text',
-      'x_start'        => 'Number',
-      'y_start'        => 'Number',
-      'x_end'          => 'Number',
-      'y_end'          => 'Number',
+      'x_position'     => 'Number',
+      'y_position'     => 'Number',
     );
   }
 }

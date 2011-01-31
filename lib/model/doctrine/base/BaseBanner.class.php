@@ -11,6 +11,8 @@ Doctrine_Manager::getInstance()->bindComponent('Banner', 'doctrine');
  * @property string $image_url
  * @property string $image_text
  * @property string $text_font
+ * @property string $text_color
+ * @property integer $font_size
  * @property Project $Project
  * @property Doctrine_Collection $Banners
  * 
@@ -18,12 +20,16 @@ Doctrine_Manager::getInstance()->bindComponent('Banner', 'doctrine');
  * @method string              getImageUrl()   Returns the current record's "image_url" value
  * @method string              getImageText()  Returns the current record's "image_text" value
  * @method string              getTextFont()   Returns the current record's "text_font" value
+ * @method string              getTextColor()  Returns the current record's "text_color" value
+ * @method integer             getFontSize()   Returns the current record's "font_size" value
  * @method Project             getProject()    Returns the current record's "Project" value
  * @method Doctrine_Collection getBanners()    Returns the current record's "Banners" collection
  * @method Banner              setProjectId()  Sets the current record's "project_id" value
  * @method Banner              setImageUrl()   Sets the current record's "image_url" value
  * @method Banner              setImageText()  Sets the current record's "image_text" value
  * @method Banner              setTextFont()   Sets the current record's "text_font" value
+ * @method Banner              setTextColor()  Sets the current record's "text_color" value
+ * @method Banner              setFontSize()   Sets the current record's "font_size" value
  * @method Banner              setProject()    Sets the current record's "Project" value
  * @method Banner              setBanners()    Sets the current record's "Banners" collection
  * 
@@ -72,6 +78,24 @@ abstract class BaseBanner extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 255,
+             ));
+        $this->hasColumn('text_color', 'string', 255, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
+             ));
+        $this->hasColumn('font_size', 'integer', 8, array(
+             'type' => 'integer',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 8,
              ));
     }
 
