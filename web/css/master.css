@@ -1,0 +1,269 @@
+/*
+Title:        Master styles for screen media
+
+*/
+
+/* RESET
+--------------------------------------------- */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+   margin: 0;
+   padding: 0;
+   font-size: 100%;
+   vertical-align: baseline;
+   border: 0;
+   outline: 0;
+   background: transparent;
+   }
+
+ol, ul {
+   list-style: none;
+   }
+
+blockquote, q {
+   quotes: none;
+   }
+
+:focus {
+   outline: 0;
+   }
+
+table {
+   border-collapse: collapse;
+   border-spacing: 0;
+   }
+
+
+/* Body
+--------------------------------------------- */
+
+body {
+   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+   color: #444;
+   font-size: 62.5%;
+   background: #fff;
+   }
+
+/* links */
+
+a:link, a:visited {
+   color: #369;
+   outline: none;
+   }
+
+a:hover {
+   color: #39c
+}
+
+/* page structure
+--------------------------------------------- */
+
+
+.wrap {
+width: 97%;
+margin: 0 auto;
+max-width: 100em;
+min-width: 70em;
+}
+
+
+.benefits {
+float:left;
+width:60%;
+}
+
+.banner {
+float:left;
+width: 36%;
+}
+
+
+.half {
+float:left;
+width: 44%;
+}
+
+.halfl {
+float:left;
+width: 44%;
+margin-right:3%;
+}
+
+.halfr {
+float:left;
+width: 34%;
+margin-left:3%;
+padding-left:10%;
+border-left: 1px solid #dedede;
+}
+
+.actionbox {
+float:left;
+width:89%;
+padding:2em 0;
+border: 1px solid #dedede;
+margin:2em 5% 3em 5%;
+display:inline;
+-webkit-border-radius:10px;
+-moz-border-radius:10px;
+border-radius:10px;
+}
+
+
+/* main styles
+--------------------------------------------- */
+
+.banner img {
+float:right;
+position:relative;
+right:20px;
+}
+
+.benefits ul {
+   margin:1.4em 0 1em 0;
+}
+
+.benefits li {
+   font-size:2.1em;
+   font-weight:bold;
+   color:#222;
+   background:transparent url(check28.png) center left no-repeat;
+   padding:7px 0 7px 34px;
+}
+
+
+
+.actionbox ol {
+padding-left:2em;
+}
+
+
+.actionbox ol li {
+font-size: 1.4em;
+list-style:decimal;
+margin-left:20px;
+padding:1em 0 0 0;
+}
+
+   .actionbox fieldset label {
+   font-size: 2em;
+   font-weight:bold;
+   color:#222;
+   display:block;
+   }
+
+
+fieldset input {
+   border: 1px solid #ccc;
+   font-size:2.6em;
+   padding:5px;
+   width: 200px;
+   margin:0.3em 0 0.5em 0;
+
+}
+
+button {
+border: none;
+color: #fff;
+font-weight:bold;
+font-size:1.5em;
+padding: 0.3em 1em;
+margin-right: 10px;
+margin-bottom:0.3em;
+background: #6ccd4b url(glass.png) repeat-x 0 50%;
+cursor:pointer;
+overflow:visible;
+border-radius:5px;
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+}
+
+button[type="submit"]:hover {
+background: #7dde5c url(glass.png) repeat-x 0 50%;
+}
+
+.actionbox p {
+   font-size:1.1em;
+   padding-top:0.2em;
+   }
+
+
+/* headings */
+
+h1 {
+   font-size:3em;
+   text-align:center;;
+   padding: 0.6em 0 0.9em 0;
+}
+
+.benefits h2 {
+   margin: 0;
+   padding: 0 0 0 0;
+   line-height:1em;
+   font-weight: normal;
+   font-size: 2.3em;
+   color: #4d4d4d;
+   }
+
+.actionbox h3 {
+   font-size: 2em;
+   color:#222;
+   padding-left:1em;
+}
+
+
+
+
+/* use the best possible ampersand */
+
+span.amp {
+   font-family: Baskerville, "Goudy Old Style", "Palatino", "Book Antiqua", serif;
+   font-weight: normal;
+   font-style: italic;
+   font-size: 1.2em;
+   color: #766557;
+   }
+
+
+
+/* banner styles
+--------------------------------------------- */
+
+
+
+/* misc.
+--------------------------------------------- */
+
+hr, .hide {
+   display: none;
+   }
+a img {
+   border: none;
+   }
+
+/* self-clear floats */
+
+.group:after {
+   content: ".";
+   display: block;
+   height: 0;
+   clear: both;
+   visibility: hidden;
+   }
+
+
+
+/* PNG fix */
+
+* html #selector { /* for IE<6 */
+   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=scale src='img/image.png'); background-image: none; background-repeat: no-repeat; background-color: transparent;
+   }
+
+/* self-clear floats */
+
+* html .group { /* IE6 */
+   height: 1%;
+   }
+*:first-child+html .group { /* IE7 */
+   min-height: 1px;
+   }
