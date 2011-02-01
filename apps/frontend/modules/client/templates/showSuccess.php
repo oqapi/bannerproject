@@ -37,7 +37,7 @@
 
 <div class="halfr">
 <textarea>
-<a href="http://www.registerbynet.com/reg.asp?showcode=<?php echo $client->getClientText(); ?>&source=107"
+<a href="<?php echo $clientBanner->getBannerUrl(); ?>"
 target="_blank"><img src="<?php echo $_SERVER['HTTP_HOST'].$clientBanner->getUrl($client->sha1ClientText()); ?>" style="border:none"></a>
 </textarea>
 
