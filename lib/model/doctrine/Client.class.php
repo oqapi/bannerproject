@@ -73,6 +73,8 @@ class Client extends BaseClient
                             "url"
         );
       fwrite ( fopen ( $banner->getPath($this->sha1ClientText()), "wb" ), $gif->GetAnimation ( ) );
+      unset($frames);  
+      unset($framed);  
     }
     return parent::save($conn);
   }
