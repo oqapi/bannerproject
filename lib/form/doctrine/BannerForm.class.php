@@ -65,6 +65,8 @@ class bannerForm extends BasebannerForm
     }
 
     #see if there are layers
+    #require(sfConfig::get('sf_root_dir').'/custom/GifSplit.class.php');
+    #$sg = new GifSplit($filepath, 'BMP', sfConfig::get('sf_upload_dir').'/banner/frames/');
     include_once ( sfConfig::get('sf_root_dir').'/custom/GIFDecoder.class.php' );
     $gifDecoder = new GIFDecoder ( fread ( fopen ( $filepath, "rb" ), filesize ( $filepath ) ) );
     $frames = $gifDecoder -> GIFGetFrames ( );
@@ -76,11 +78,13 @@ class bannerForm extends BasebannerForm
         $delay = $delays[$i];
         #fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
         $im = imagecreatefromstring($frame);
-        error_log(imagesx($im));
-        imagealphablending($im, true);
-        error_log(imagesx($im));
+        $black = imagecolorallocate($im, 0, 0, 0);
+
+        // Make the background transparent
+        imagecolortransparent($im, $black);
 
         imagegif($im, sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) );
+        #copy(sfConfig::get('sf_upload_dir').'/banner/frames/'.$i.'.gif', sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename));
         $bannerPosition = new BannerPosition();
         $bannerPosition->setPositionIndex($i);
         $bannerPosition->setDelay($delay);
