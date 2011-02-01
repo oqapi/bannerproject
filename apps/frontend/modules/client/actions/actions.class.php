@@ -76,4 +76,21 @@ class clientActions extends sfActions
       $this->redirect('client/show?id='.$client->getId());
     }
   }
+
+  public function executeDownloadbanner(sfWebRequest $request){
+    $this->forward404Unless($client = Doctrine_Core::getTable('Client')->find(array($request->getParameter('id'))), sprintf('Object client does not exist (%s).', $request->getParameter('id')));
+    $this->setLayout(false);
+    $bannerId = $request->getParameter('bannerid');
+    $filepath = $client->getBannerPath($bannerId);
+    $this->forward404Unless(file_exists($filepath));
+    $response = $this->getResponse();
+    $response->setHttpHeader('Content-Disposition','attachment; filename="banner.gif');
+    $response->setHttpHeader('filename:banner.gif',true);
+    $response->setContentType('image');
+    $response->sendHttpHeaders();
+    $response->setContent(readfile($filepath));
+
+    return sfView::NONE;
+  }
+           
 }

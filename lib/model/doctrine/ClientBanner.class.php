@@ -16,4 +16,8 @@ class ClientBanner extends BaseClientBanner
     return '###';
   }
 
+  public function getBannerUrl(){
+    return '###';
+  }
+
 }

@@ -76,4 +76,5 @@ class clientbannerActions extends sfActions
       $this->redirect('clientbanner/edit?id='.$client_banner->getId());
     }
   }
+
 }

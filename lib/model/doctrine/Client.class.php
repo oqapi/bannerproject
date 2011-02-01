@@ -83,9 +83,26 @@ class Client extends BaseClient
     $url = sprintf('/banner/client/%s/frames/',$this->sha1ClientText());
     return sfConfig::get('sf_upload_dir').$url;
   }
+  
+  public function getDir(){
+    $url = sprintf('/banner/client/%s/',$this->sha1ClientText());
+    return sfConfig::get('sf_upload_dir').$url;
+  }
 
   public function getClientBanners() {
     $banners = Doctrine_Core::getTable('Banner')->getBannersFromProject($this->getProjectId());
     return $banners;
+  }
+
+  public function getBannerUrl($bannerId){
+    $banner = Doctrine_Core::getTable('Banner')->find(array($bannerId));
+    $file = $banner->getFileName();
+    return $this->getFrameDir().$file;
+  }
+
+  public function getBannerPath($bannerId){
+    $banner = Doctrine_Core::getTable('Banner')->find(array($bannerId));
+    $file = $banner->getFileName();
+    return $this->getDir().$file;
   }
 }
