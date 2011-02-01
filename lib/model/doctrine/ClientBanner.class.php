@@ -12,12 +12,5 @@
  */
 class ClientBanner extends BaseClientBanner
 {
-  public function showImage(){
-    return '###';
-  }
-
-  public function getBannerUrl(){
-    return '###';
-  }
 
 }
