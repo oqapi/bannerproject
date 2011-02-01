@@ -69,21 +69,26 @@ class bannerForm extends BasebannerForm
     #$sg = new GifSplit($filepath, 'BMP', sfConfig::get('sf_upload_dir').'/banner/frames/');
     include_once ( sfConfig::get('sf_root_dir').'/custom/GIFDecoder.class.php' );
     $gifDecoder = new GIFDecoder ( fread ( fopen ( $filepath, "rb" ), filesize ( $filepath ) ) );
-    $frames = $gifDecoder -> GIFGetFrames ( );
+    $image = new Imagick($filepath);
+    $image = $image->coalesceImages(); // the trick!
+
+#    $frames = $gifDecoder -> GIFGetFrames ( );
     $delays = $gifDecoder -> GIFGetDelays ( );
     $i = 0;
     #if (count($frames) > 1) {
       #save frames
-      foreach ( $gifDecoder -> GIFGetFrames ( ) as $frame ) {
+      #foreach ( $gifDecoder -> GIFGetFrames ( ) as $frame ) {
+      foreach ($image as $frame) {
         $delay = $delays[$i];
         #fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
-        $im = imagecreatefromstring($frame);
-        $black = imagecolorallocate($im, 0, 0, 0);
+        #$im = imagecreatefromstring($frame);
+        #$black = imagecolorallocate($im, 0, 0, 0);
 
         // Make the background transparent
-        imagecolortransparent($im, $black);
+        #imagecolortransparent($im, $black);
 
-        imagegif($im, sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) );
+        #imagegif($im, sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) );
+        $frame->writeImage(sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename));
         #copy(sfConfig::get('sf_upload_dir').'/banner/frames/'.$i.'.gif', sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename));
         $bannerPosition = new BannerPosition();
         $bannerPosition->setPositionIndex($i);

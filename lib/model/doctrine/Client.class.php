@@ -39,15 +39,15 @@ class Client extends BaseClient
       foreach ($bannerPositions as $bannerPosition) {
         $positionIndex = $bannerPosition->getPositionIndex();
         $im = imagecreatefromgif($banner->getFramePath($positionIndex,$this->sha1ClientText()));
-        imagesavealpha($im, true);
-        imagealphablending($im, false);
+        #imagesavealpha($im, true);
+        #imagealphablending($im, false);
         //add text
         if ($bannerPosition->getShowLabel()) {
           #$w = imagesx($im);
           #$h = imagesy($im);
-          list ($w, $h) = @getimagesize ($banner->getFramePath($positionIndex,$this->sha1ClientText())); 
-          $imgSize = @getimagesize ($banner->getFramePath($positionIndex,$this->sha1ClientText())); 
-          var_dump($imgSize);
+          #list ($w, $h) = @getimagesize ($banner->getFramePath($positionIndex,$this->sha1ClientText())); 
+          #$imgSize = @getimagesize ($banner->getFramePath($positionIndex,$this->sha1ClientText())); 
+          #var_dump($imgSize);
           $text_color = imagecolorallocate($im, 0, 0, 0);
           $font = '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf';
           $fontSize = $banner->getFontSize();
