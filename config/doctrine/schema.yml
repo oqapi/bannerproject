@@ -24,6 +24,13 @@ Banner:
       primary: false
       notnull: false
       autoincrement: false
+    banner_url:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     text_font:
       type: string(255)
       fixed: false
