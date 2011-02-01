@@ -12,5 +12,8 @@
  */
 class ClientBanner extends BaseClientBanner
 {
-
+    public function getBannerUrl(){
+      $banner = Doctrine_Core::getTable('Banner')->find(array($this->getBannerId()));
+      return $banner->getBannerUrl();
+    }
 }
