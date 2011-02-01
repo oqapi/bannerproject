@@ -12,7 +12,11 @@ class ClientForm extends BaseClientForm
 {
   public function configure()
   {
-	$this->widgetSchema->setLabel('client_text', 'Your stand number:');
+	$arr = array(
+		"client_text"		=> "Your stand number",
+		"project_id"	=> " ",
+	);
+	$this->widgetSchema->setLabels($arr);
 	unset($this['created_at'], $this['updated_at']);
   }
 }
