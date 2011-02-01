@@ -32,13 +32,18 @@
 </ul>
 </div>
 
+ <?php foreach ($client->getClientBanners() as $clientBanner) { ?>
+   <img src="<?php echo $clientBanner->getUrl($client->sha1ClientText()); ?>">
+
 <div class="halfr">
 <textarea>
-<a href="http://www.registerbynet.com/reg.asp?showcode=cphiww10&source=107" target="_blank"><img src="http://www.thesalesgenerator.com/ubmi/func.php?act=get_gif&stand=14&set=cobrand" style="border:none"></a>
+<a href="http://www.registerbynet.com/reg.asp?showcode=<?php echo $client->getClientText(); ?>&source=107"
+target="_blank"><img src="<?php echo $_SERVER['HTTP_HOST'].$clientBanner->getUrl($client->sha1ClientText()); ?>" style="border:none"></a>
 </textarea>
 
 <button name="submit" type="submit">Download banner</button>
 </div>
+ <?php } ?>
 </div>
 
 </div>
