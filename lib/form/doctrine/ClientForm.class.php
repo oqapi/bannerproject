@@ -12,6 +12,7 @@ class ClientForm extends BaseClientForm
 {
   public function configure()
   {
-    unset($this['created_at'], $this['updated_at']);
+	$this->widgetSchema->setLabel('client_text', 'Your stand number:');
+	unset($this['created_at'], $this['updated_at'], $this['project_id']);
   }
 }
