@@ -4,7 +4,7 @@
 # default rules
 homepage:
   url:   /
-  param: { module: project, action: index }
+  param: { module: client, action: new }
 
 # generic rules
 # please, remove them by adding more specific rules
