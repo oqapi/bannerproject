@@ -73,7 +73,7 @@ class clientActions extends sfActions
     {
       $client = $form->save();
 
-      $this->redirect('client/edit?id='.$client->getId());
+      $this->redirect('client/show?id='.$client->getId());
     }
   }
 }
