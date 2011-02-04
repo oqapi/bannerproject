@@ -24,4 +24,30 @@ class Banner extends BaseBanner
   public function getFileName(){
     return basename($this->getImageUrl());
   }
+
+  public function getImageUrlAbsolute(){
+    return '/uploads/banner/'.$this->getImageUrl();
+  }
+
+  public function getUrl($sha1Text){
+    $url = sprintf('/banner/client/%s/%s',$sha1Text,$this->getImageUrl());
+    return '/uploads'.$url;
+  }
+
+  public function getPath($sha1Text){
+    $dir = sfConfig::get('sf_upload_dir').sprintf('/banner/client/%s/',$sha1Text);
+    return $dir.$this->getImageUrl();
+  }
+
+  public function getFrameUrl($positionIndex,$sha1Text){
+    $url = sprintf('/banner/client/%s/frames/%03d%s',$sha1Text,$positionIndex(),$this->getImageUrl());
+    return '/uploads'.$url;
+  }
+
+  public function getFramePath($positionIndex, $sha1Text){
+    $dir = sfConfig::get('sf_upload_dir').sprintf('/banner/client/%s/frames/',$sha1Text);
+    $path = $dir.sprintf('%03d%s',$positionIndex,$this->getImageUrl());
+    return $path;
+  }
+
 }

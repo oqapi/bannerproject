@@ -24,8 +24,29 @@ Banner:
       primary: false
       notnull: false
       autoincrement: false
+    banner_url:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     text_font:
       type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    text_color:
+      type: string(255)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    font_size:
+      type: integer(8)
       fixed: false
       unsigned: false
       primary: false
@@ -46,40 +67,59 @@ BannerPosition:
       notnull: true
       autoincrement: false
     position_index:
-      type: string(22)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    x_start:
       type: integer(8)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    y_start:
+    delay:
       type: integer(8)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    x_end:
+    show_label:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    x_position:
       type: integer(8)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    y_end:
+    y_position:
       type: integer(8)
       fixed: false
       unsigned: false
       primary: false
+      notnull: false
+      autoincrement: false
   relations:
-    Project: { onDelete: CASCADE, local: banner_id, foreign: id, foreignAlias: Banners } 
+    Banner: { onDelete: CASCADE, local: banner_id, foreign: id, foreignAlias: Banners } 
+
+Client:
+  actAs: { Timestampable: ~ }
+  connection: doctrine
+  tableName: client
+  columns:
+    project_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    client_text: 
+      type: string(255)
+  relations:
+    Project: { onDelete: CASCADE, local: project_id, foreign: id, foreignAlias: Projects } 
 
 ClientBanner:
   actAs: { Timestampable: ~ }
@@ -93,10 +133,16 @@ ClientBanner:
       primary: false
       notnull: true
       autoincrement: false
-    client_text: 
-      type: string(255)
+    client_id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
   relations:
     Banner: { onDelete: CASCADE, local: banner_id, foreign: id, foreignAlias: Banners } 
+    Client: { onDelete: CASCADE, local: client_id, foreign: id, foreignAlias: Client } 
 
 Project:
   actAs: { Timestampable: ~ }

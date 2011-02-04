@@ -29,6 +29,8 @@
 
 <hr />
 
+<?php $clientForm = new ClientForm(); ?>
+
 <a href="<?php echo url_for('project/edit?id='.$project->getId()) ?>">Edit</a>
 &nbsp;
 <a href="<?php echo url_for('project/index') ?>">List</a>

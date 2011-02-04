@@ -16,22 +16,22 @@ abstract class BaseBannerPositionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'             => new sfWidgetFormInputHidden(),
-      'banner_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => false)),
+      'banner_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Banner'), 'add_empty' => false)),
       'position_index' => new sfWidgetFormInputText(),
-      'x_start'        => new sfWidgetFormInputText(),
-      'y_start'        => new sfWidgetFormInputText(),
-      'x_end'          => new sfWidgetFormInputText(),
-      'y_end'          => new sfWidgetFormInputText(),
+      'delay'          => new sfWidgetFormInputText(),
+      'show_label'     => new sfWidgetFormInputText(),
+      'x_position'     => new sfWidgetFormInputText(),
+      'y_position'     => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'banner_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'))),
-      'position_index' => new sfValidatorString(array('max_length' => 22, 'required' => false)),
-      'x_start'        => new sfValidatorInteger(array('required' => false)),
-      'y_start'        => new sfValidatorInteger(array('required' => false)),
-      'x_end'          => new sfValidatorInteger(array('required' => false)),
-      'y_end'          => new sfValidatorInteger(array('required' => false)),
+      'banner_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Banner'))),
+      'position_index' => new sfValidatorInteger(array('required' => false)),
+      'delay'          => new sfValidatorInteger(array('required' => false)),
+      'show_label'     => new sfValidatorInteger(array('required' => false)),
+      'x_position'     => new sfValidatorInteger(array('required' => false)),
+      'y_position'     => new sfValidatorInteger(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('banner_position[%s]');

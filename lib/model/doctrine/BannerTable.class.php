@@ -17,5 +17,12 @@ class BannerTable extends Doctrine_Table
         return Doctrine_Core::getTable('Banner');
     }
 
-    
+    public function getBannersFromProject($projectId)
+    {
+      $q = $this->createQuery('j')
+        ->where('j.project_id = ?',$projectId);
+
+      return $q->execute();
+    }
+
 }

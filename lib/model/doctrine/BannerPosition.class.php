@@ -23,12 +23,16 @@ class BannerPosition extends BaseBannerPosition
        $url = sprintf('/banner/client/%s/frames/%03d%s',$banner->sha1ImageText(),$this->getPositionIndex(),$banner->getImageUrl());
        if (!file_exists(sfConfig::get('sf_upload_dir').$url)) {
          //create new test banner
-         $clientBanner = new ClientBanner();
-         $clientBanner->setClientText($banner->getImageText());
-         $clientBanner->setBannerId($banner->getId());
-         $clientBanner->save();
+         $client = new Client();
+         $client->setProjectId($banner->getProjectId());
+         $client->setClientText($banner->getImageText());
+         $client->save();
        }
        return '/uploads'.$url;
     }
 
+    public function showOriginalBanner(){
+      $banner = Doctrine_Core::getTable('Banner')->find(array($this->getBannerId()));
+      return $banner->getImageUrlAbsolute();
+    }
 }

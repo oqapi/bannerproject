@@ -20,8 +20,14 @@ class BannerPositionForm extends BaseBannerPositionForm
 
     //create test image/frame
     $banner = Doctrine_Core::getTable('Banner')->find(array($this->getObject()->getBannerId()));
-    $clientBanner = Doctrine_Core::getTable('clientBanner')->getClientBannerByClientText($banner->getImageText());
-    $clientBanner->save();
+    $client = Doctrine_Core::getTable('client')->getClientByClientText($banner->getImageText());
+    if (count($client) != 1){
+      //create new
+      $client = new Client();
+      $client->setProjectId($banner->getProjectId());
+      $client->setClientText($banner->getImageText());
+    }
+    $client->save();
 
     return $object;
   }

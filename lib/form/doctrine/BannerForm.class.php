@@ -65,27 +65,46 @@ class bannerForm extends BasebannerForm
     }
 
     #see if there are layers
+    #require(sfConfig::get('sf_root_dir').'/custom/GifSplit.class.php');
+    #$sg = new GifSplit($filepath, 'BMP', sfConfig::get('sf_upload_dir').'/banner/frames/');
     include_once ( sfConfig::get('sf_root_dir').'/custom/GIFDecoder.class.php' );
     $gifDecoder = new GIFDecoder ( fread ( fopen ( $filepath, "rb" ), filesize ( $filepath ) ) );
-    $frames = $gifDecoder -> GIFGetFrames ( );
-    if (count($frames) > 1) {
+    $image = new Imagick($filepath);
+    $image = $image->coalesceImages(); // the trick!
+
+#    $frames = $gifDecoder -> GIFGetFrames ( );
+    $delays = $gifDecoder -> GIFGetDelays ( );
+    $i = 0;
+    #if (count($frames) > 1) {
       #save frames
-      $i = 0;
-      foreach ( $gifDecoder -> GIFGetFrames ( ) as $frame ) {
-        fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
+      #foreach ( $gifDecoder -> GIFGetFrames ( ) as $frame ) {
+      foreach ($image as $frame) {
+        $delay = $delays[$i];
+        #fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ), $frame );
+        #$im = imagecreatefromstring($frame);
+        #$black = imagecolorallocate($im, 0, 0, 0);
+
+        // Make the background transparent
+        #imagecolortransparent($im, $black);
+
+        #imagegif($im, sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) );
+        $frame->writeImage(sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename));
+        #copy(sfConfig::get('sf_upload_dir').'/banner/frames/'.$i.'.gif', sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename));
         $bannerPosition = new BannerPosition();
         $bannerPosition->setPositionIndex($i);
+        $bannerPosition->setDelay($delay);
+        $bannerPosition->setShowLabel(0);
         $bannerPosition->setBannerId($this->getObject()->getId());
         $bannerPosition->save();
         $i++;
       }
-    } else {
-      #create 1 banner_position record
-      fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ),$filePath );
-      $bannerPosition = new BannerPosition();
-      $bannerPosition->setBannerId($this->getObject()->getId());
-      $bannerPosition->save();
-    }
+    #} else {
+    #  #create 1 banner_position record
+    #  fwrite ( fopen ( sfConfig::get('sf_upload_dir').sprintf('/banner/frames/%03d%s',$i,$filename) , "wb" ),$filepath );
+    #  $bannerPosition = new BannerPosition();
+    #  $bannerPosition->setBannerId($this->getObject()->getId());
+    #  $bannerPosition->save();
+    #}
  
   }
   

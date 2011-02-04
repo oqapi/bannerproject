@@ -19,7 +19,10 @@ abstract class BaseBannerForm extends BaseFormDoctrine
       'project_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => false)),
       'image_url'  => new sfWidgetFormInputText(),
       'image_text' => new sfWidgetFormInputText(),
+      'banner_url' => new sfWidgetFormInputText(),
       'text_font'  => new sfWidgetFormInputText(),
+      'text_color' => new sfWidgetFormInputText(),
+      'font_size'  => new sfWidgetFormInputText(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -29,7 +32,10 @@ abstract class BaseBannerForm extends BaseFormDoctrine
       'project_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'))),
       'image_url'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'image_text' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'banner_url' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'text_font'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'text_color' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'font_size'  => new sfValidatorInteger(array('required' => false)),
       'created_at' => new sfValidatorDateTime(),
       'updated_at' => new sfValidatorDateTime(),
     ));
