@@ -12,4 +12,10 @@
  */
 class Project extends BaseProject
 {
+
+  public function getProjectBanners() {
+    $banners = Doctrine_Core::getTable('Banner')->getBannersFromProject($this->getId());
+    return $banners;
+  }
+
 }

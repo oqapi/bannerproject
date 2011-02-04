@@ -50,15 +50,14 @@ class Client extends BaseClient
           #var_dump($imgSize);
           $color = $banner->getTextColor();
           $text_color = imagecolorallocate($im, intval(substr($color,0,3)), intval(substr($color,3,3)), intval(substr($color,6,3)));
-          error_log('color:'.$text_color);
           $font = sfConfig::get('sf_root_dir').'/fonts/Bliss2H.otf';
           $fontSize = $banner->getFontSize();
           $x = $bannerPosition->getXPosition();
           $y = $bannerPosition->getYPosition();
           #imagecolortransparent($im, $text_color);
           imagettftext($im, $fontSize, 0, $x, $y + $fontSize, $text_color, $font,  $this->getClientText());
+          imagegif($im,$banner->getFramePath($positionIndex,$this->sha1ClientText()));
         }
-        imagegif($im,$banner->getFramePath($positionIndex,$this->sha1ClientText()));
         imagedestroy($im);
 
         $frames[] = $banner->getFramePath($positionIndex,$this->sha1ClientText());
