@@ -15,29 +15,31 @@ abstract class BaseBannerForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormInputHidden(),
-      'project_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => false)),
-      'image_url'  => new sfWidgetFormInputText(),
-      'image_text' => new sfWidgetFormInputText(),
-      'banner_url' => new sfWidgetFormInputText(),
-      'text_font'  => new sfWidgetFormInputText(),
-      'text_color' => new sfWidgetFormInputText(),
-      'font_size'  => new sfWidgetFormInputText(),
-      'created_at' => new sfWidgetFormDateTime(),
-      'updated_at' => new sfWidgetFormDateTime(),
+      'id'              => new sfWidgetFormInputHidden(),
+      'project_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => false)),
+      'image_url'       => new sfWidgetFormInputText(),
+      'image_text'      => new sfWidgetFormInputText(),
+      'banner_url'      => new sfWidgetFormInputText(),
+      'text_font'       => new sfWidgetFormInputText(),
+      'text_color'      => new sfWidgetFormInputText(),
+      'font_size'       => new sfWidgetFormInputText(),
+      'additional_info' => new sfWidgetFormTextarea(),
+      'created_at'      => new sfWidgetFormDateTime(),
+      'updated_at'      => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'project_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'))),
-      'image_url'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'image_text' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'banner_url' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'text_font'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'text_color' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'font_size'  => new sfValidatorInteger(array('required' => false)),
-      'created_at' => new sfValidatorDateTime(),
-      'updated_at' => new sfValidatorDateTime(),
+      'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'project_id'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'))),
+      'image_url'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'image_text'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'banner_url'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'text_font'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'text_color'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'font_size'       => new sfValidatorInteger(array('required' => false)),
+      'additional_info' => new sfValidatorString(array('required' => false)),
+      'created_at'      => new sfValidatorDateTime(),
+      'updated_at'      => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('banner[%s]');
