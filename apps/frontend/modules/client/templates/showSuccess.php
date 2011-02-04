@@ -21,8 +21,9 @@
 
 </div> <!-- /.placementtips -->
 
+<?php foreach ($client->getClientBanners() as $clientBanner) { ?>
 <div class="bannerdownload group">
-<img src="Banners project 1/japan-468x60.gif" alt="" />
+<img src="<?php echo $clientBanner->getUrl($client->sha1ClientText()); ?>">
 <div class="group">
 <div class="halfl">
 <ul>
@@ -32,22 +33,22 @@
 </ul>
 </div>
 
- <?php foreach ($client->getClientBanners() as $clientBanner) { ?>
-   <img src="<?php echo $clientBanner->getUrl($client->sha1ClientText()); ?>">
-
 <div class="halfr">
+
+
 <textarea>
 <a href="<?php echo $clientBanner->getBannerUrl(); ?>"
 target="_blank"><img src="<?php echo $_SERVER['HTTP_HOST'].$clientBanner->getUrl($client->sha1ClientText()); ?>" style="border:none"></a>
 </textarea>
 
 <button name="submit" type="submit" name="Button" onClick="window.location.href='<?php echo "http://".$_SERVER['HTTP_HOST'].$clientBanner->getUrl($client->sha1ClientText()); ?>';">Download banner</button>
+
 </div>
- <?php } ?>
 </div>
 
 </div>
 
+<?php } ?>
 
 <!--<table>
   <tbody>
