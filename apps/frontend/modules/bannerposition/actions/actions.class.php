@@ -72,7 +72,6 @@ class bannerpositionActions extends sfActions
     if ($form->isValid())
     {
       $banner_position = $form->save();
-
       $this->redirect('bannerposition/edit?id='.$banner_position->getId());
     }
   }

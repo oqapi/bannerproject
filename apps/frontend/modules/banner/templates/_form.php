@@ -8,8 +8,8 @@
   <table>
     <tfoot>
       <tr>
-        <td colspan="2">
-          &nbsp;<a href="<?php echo url_for('banner/index') ?>">Back to list</a>
+	<td colspan="2">
+          &nbsp;<a href="<?php echo url_for('project/index') ?>">Back to projects list</a>
           <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'banner/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>

@@ -24,6 +24,16 @@
       <th>Updated at:</th>
       <td><?php echo $project->getUpdatedAt() ?></td>
     </tr>
+    <?php foreach ($project->getProjectBanners() as $projectBanner) { ?>
+       <tr>
+	   <td>
+		<a href="<?php echo url_for('banner/edit?id='.$projectBanner->getId()) ?>">Edit this banner</a>
+           </td>
+           <td>
+		<img src="<?php echo "/uploads/banner/".$projectBanner->getImageUrl(); ?>" style="border:none">
+	   </td>
+       </tr>
+    <?php } ?>
   </tbody>
 </table>
 
@@ -34,3 +44,5 @@
 <a href="<?php echo url_for('project/edit?id='.$project->getId()) ?>">Edit</a>
 &nbsp;
 <a href="<?php echo url_for('project/index') ?>">List</a>
+
+
