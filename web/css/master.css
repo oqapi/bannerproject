@@ -141,7 +141,7 @@ right:20px;
    font-size:2.1em;
    font-weight:bold;
    color:#222;
-   background:transparent url(check28.png) center left no-repeat;
+   background:transparent url(/images/check28.png) center left no-repeat;
    padding:7px 0 7px 34px;
 }
 
@@ -195,7 +195,7 @@ fieldset input {
 
 }
 
-input[type="submit"] {
+input[type="submit"], button[type="submit"] {
 border: none;
 color: #fff;
 font-weight:bold;
@@ -203,7 +203,7 @@ font-size:1.5em;
 padding: 0.3em 1em;
 margin-right: 10px;
 margin-bottom:0.3em;
-background: #6ccd4b url(glass.png) repeat-x 0 50%;
+background: #6ccd4b url(/images/glass.png) repeat-x 0 50%;
 cursor:pointer;
 overflow:visible;
 border-radius:5px;
@@ -211,8 +211,8 @@ border-radius:5px;
 -moz-border-radius:5px;
 }
 
-input[type="submit"]:hover {
-background: #7dde5c url(glass.png) repeat-x 0 50%;
+input[type="submit"]:hover, button[type="submit"]:hover {
+background: #7dde5c url(/images/glass.png) repeat-x 0 50%;
 }
 
 .actionbox p {
