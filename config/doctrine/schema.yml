@@ -52,6 +52,13 @@ Banner:
       primary: false
       notnull: false
       autoincrement: false
+    additional_info:
+      type: clob
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     Project: { onDelete: CASCADE, local: project_id, foreign: id, foreignAlias: Projects } 
 
