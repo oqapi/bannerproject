@@ -2,9 +2,14 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+
 homepage:
   url:   /
   param: { module: client, action: new }
+
+#homepage2:
+#  url:   /project/showclient/id/1
+#  param: { module: client, action: new }
 
 # generic rules
 # please, remove them by adding more specific rules
