@@ -14,27 +14,30 @@ Doctrine_Manager::getInstance()->bindComponent('Banner', 'doctrine');
  * @property string $text_font
  * @property string $text_color
  * @property integer $font_size
+ * @property clob $additional_info
  * @property Project $Project
  * @property Doctrine_Collection $Banners
  * 
- * @method integer             getProjectId()  Returns the current record's "project_id" value
- * @method string              getImageUrl()   Returns the current record's "image_url" value
- * @method string              getImageText()  Returns the current record's "image_text" value
- * @method string              getBannerUrl()  Returns the current record's "banner_url" value
- * @method string              getTextFont()   Returns the current record's "text_font" value
- * @method string              getTextColor()  Returns the current record's "text_color" value
- * @method integer             getFontSize()   Returns the current record's "font_size" value
- * @method Project             getProject()    Returns the current record's "Project" value
- * @method Doctrine_Collection getBanners()    Returns the current record's "Banners" collection
- * @method Banner              setProjectId()  Sets the current record's "project_id" value
- * @method Banner              setImageUrl()   Sets the current record's "image_url" value
- * @method Banner              setImageText()  Sets the current record's "image_text" value
- * @method Banner              setBannerUrl()  Sets the current record's "banner_url" value
- * @method Banner              setTextFont()   Sets the current record's "text_font" value
- * @method Banner              setTextColor()  Sets the current record's "text_color" value
- * @method Banner              setFontSize()   Sets the current record's "font_size" value
- * @method Banner              setProject()    Sets the current record's "Project" value
- * @method Banner              setBanners()    Sets the current record's "Banners" collection
+ * @method integer             getProjectId()       Returns the current record's "project_id" value
+ * @method string              getImageUrl()        Returns the current record's "image_url" value
+ * @method string              getImageText()       Returns the current record's "image_text" value
+ * @method string              getBannerUrl()       Returns the current record's "banner_url" value
+ * @method string              getTextFont()        Returns the current record's "text_font" value
+ * @method string              getTextColor()       Returns the current record's "text_color" value
+ * @method integer             getFontSize()        Returns the current record's "font_size" value
+ * @method clob                getAdditionalInfo()  Returns the current record's "additional_info" value
+ * @method Project             getProject()         Returns the current record's "Project" value
+ * @method Doctrine_Collection getBanners()         Returns the current record's "Banners" collection
+ * @method Banner              setProjectId()       Sets the current record's "project_id" value
+ * @method Banner              setImageUrl()        Sets the current record's "image_url" value
+ * @method Banner              setImageText()       Sets the current record's "image_text" value
+ * @method Banner              setBannerUrl()       Sets the current record's "banner_url" value
+ * @method Banner              setTextFont()        Sets the current record's "text_font" value
+ * @method Banner              setTextColor()       Sets the current record's "text_color" value
+ * @method Banner              setFontSize()        Sets the current record's "font_size" value
+ * @method Banner              setAdditionalInfo()  Sets the current record's "additional_info" value
+ * @method Banner              setProject()         Sets the current record's "Project" value
+ * @method Banner              setBanners()         Sets the current record's "Banners" collection
  * 
  * @package    sf_sandbox
  * @subpackage model
@@ -108,6 +111,14 @@ abstract class BaseBanner extends sfDoctrineRecord
              'notnull' => false,
              'autoincrement' => false,
              'length' => 8,
+             ));
+        $this->hasColumn('additional_info', 'clob', null, array(
+             'type' => 'clob',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
              ));
     }
 
