@@ -309,3 +309,9 @@ a img {
 *:first-child+html .group { /* IE7 */
    min-height: 1px;
    }
+
+.bannerdownload h3{
+    font-size:1.2em;
+    margin-bottom:1.2em;
+    color:#777;
+}
