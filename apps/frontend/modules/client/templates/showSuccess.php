@@ -24,8 +24,8 @@
 <?php foreach ($client->getClientBanners() as $clientBanner) { ?>
 <div class="bannerdownload group">
 
-<?php if ($clientBanner->getBanner()->getAdditionalInfo()) { ?>
-    <h3><?php $clientBanner->getBanner()->getAdditionalInfo(); ?></h3>
+<?php if ( $clientBanner->getAdditionalInfo() != "" ) { ?>
+    <h3><?php echo $clientBanner->getAdditionalInfo(); ?></h3>
 <?php } ?>
 
 <img src="<?php echo $clientBanner->getUrl($client->sha1ClientText()); ?>">
