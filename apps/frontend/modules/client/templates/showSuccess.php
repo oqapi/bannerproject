@@ -34,7 +34,7 @@
 <ul>
 <li>Copy & Paste the code to your own website</li>
 <li class="or">Or</li>
-<li>Click the download button to save the image.</li>
+<li>Click download banner to save the image.</li>
 </ul>
 </div>
 
