@@ -59,8 +59,8 @@ class Client extends BaseClient
           $y = $bannerPosition->getYPosition();
           #imagecolortransparent($im, $text_color);
           imagettftext($im, $fontSize, 0, $x, $y + $fontSize, $text_color, $font,  $this->getClientText());
-          imagegif($im,$banner->getFramePath($positionIndex,$this->sha1ClientText()));
         }
+        imagegif($im,$banner->getFramePath($positionIndex,$this->sha1ClientText()));
         imagedestroy($im);
 
         $frames[] = $banner->getFramePath($positionIndex,$this->sha1ClientText());
