@@ -76,4 +76,5 @@ class bannerActions extends sfActions
 #      $this->redirect('banner/edit?id='.$banner->getId());
     }
   }
+
 }

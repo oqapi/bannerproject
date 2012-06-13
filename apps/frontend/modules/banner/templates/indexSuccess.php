@@ -1,34 +1,29 @@
+<ul class="topmenu"><li><a href="http://www.bannerproject.eu">Home</a></li>  <li><a href="/project">Projects</a></li> <li><a href="/banner">Banners</a></li><li><a href="/help.html">Help</a></li>  </ul>
+
 <h1>Banners List</h1>
 
-<table>
+<table class="width95">
   <thead>
     <tr>
-      <th>Id</th>
+      <th>Number</th>
       <th>Project</th>
       <th>Image url</th>
-      <th>Image text</th>
       <th>Text font</th>
-      <th>Text color</th>
       <th>Font size</th>
-      <th>Created at</th>
-      <th>Updated at</th>
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($banners as $banner): ?>
-    <tr>
-      <td><a href="<?php echo url_for('banner/edit?id='.$banner->getId()) ?>"><?php echo $banner->getId() ?></a></td>
-      <td><?php echo $banner->getProjectId() ?></td>
-      <td><?php echo $banner->getImageUrl() ?></td>
-      <td><?php echo $banner->getImageText() ?></td>
-      <td><?php echo $banner->getTextFont() ?></td>
-      <td><?php echo $banner->getTextColor() ?></td>
-      <td><?php echo $banner->getFontSize() ?></td>
-      <td><?php echo $banner->getCreatedAt() ?></td>
-      <td><?php echo $banner->getUpdatedAt() ?></td>
+    <?php $i=0; foreach ($banners as $banner): ?>
+    <tr class="<?php if ($i&1) { echo "even"; } ?>">
+      <td class="project"><a href="<?php echo url_for('banner/edit?id='.$banner->getId()) ?>"><?php echo $i + 1; ?></a></td>
+      <td class="project"><?php echo $banner->getProjectName() ?></td>
+      <td class="project"><img style="width: 50px;" src="/uploads/banner/<?php echo $banner->getImageUrl() ?>" /></td>
+      <td class="project"><?php echo $banner->getTextFont() ?></td>
+      <td class="project"><?php echo $banner->getFontSize() ?></td>
     </tr>
+    <?php $i++; ?>
     <?php endforeach; ?>
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('banner/new') ?>">New</a>
+  <a class="adminbutton" href="<?php echo url_for('banner/new') ?>">New</a>

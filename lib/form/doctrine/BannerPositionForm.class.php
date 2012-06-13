@@ -12,6 +12,17 @@ class BannerPositionForm extends BaseBannerPositionForm
 {
   public function configure()
   {
+	  unset($this['position_index']);
+
+	  $this->setWidget('banner_id', new sfWidgetFormInputHidden());
+	  
+	  $this->setWidget('show_label', new sfWidgetFormSelect(
+			array(
+				'label' => 'Show Label',
+				'choices' => array(0 => 'No', 1 => 'Yes'),
+			)
+		));
+
   }
 
  protected function doSave ( $con = null )

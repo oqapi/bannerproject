@@ -12,9 +12,9 @@ default:
     language:     en
     robots:       index, follow
 
-  stylesheets:    [master.css]
+  stylesheets:    [master.css,colorpicker.css]
 
-  javascripts:    []
+  javascripts:    [jquery.js,colorpicker.js,eye.js,utils.js,layout.js]
 
   has_layout:     true
   layout:         layout

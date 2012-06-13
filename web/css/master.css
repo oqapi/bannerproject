@@ -16,6 +16,8 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
    background: transparent;
    }
 
+h1 {clear: both;}
+
 ol, ul {
    list-style: none;
    }
@@ -314,4 +316,130 @@ a img {
     font-size:1.2em;
     margin-bottom:1.2em;
     color:#777;
+}
+
+/* admin interface
+--------------------------------------------- */
+
+thead {
+   background: #222;
+   color:#fff;
+}
+
+td, th  {
+   padding:0.9em 1.3em;
+   font-size:1.4em;
+   text-align:left;
+   vertical-align:middle;
+}
+
+td a {
+   color:#fff;
+   font-size:150%;
+   padding:0.3em 1.4em;
+   background: #6ccd4b url(/images/glass.png) repeat-x 0 50%;
+   cursor:pointer;
+   overflow:visible;
+   border-radius:5px;
+   -webkit-border-radius:5px;
+   -moz-border-radius:5px;
+}
+
+td a:hover {
+   background: #7dde5c url(/images/glass.png) repeat-x 0 50%;
+}
+
+tr.even {
+   background:#efefef;
+}
+
+td.project{
+   font-weight:bold;
+   font-size:150%;
+}
+
+table.width95 {
+	clear: both;
+	width: 95%;
+}
+
+/* topmenu */
+
+.topmenu {
+	float:left;
+	width:90%;
+	   background:rgb(200,200,200);
+	      padding: 10px 0 10px 30px;
+	      border-bottom:7px solid #000;
+	      margin-bottom:1em;
+	         }
+
+.topmenu li {
+    float:left;
+    margin: 0 0 0 5px;
+    }
+.topmenu li a {
+    padding: 10px 15px;
+    font-weight: bold;
+    color: rgba(25,25,55,.7);
+font-size:2em;
+    
+    }
+.topmenu li a:hover,
+.topmenu li a:focus {
+color:#000;
+background:#fff;
+    background: rgba(55,255,255,.10);
+    }
+
+
+/* admin linkjes 
+--------------------------------------------- */
+
+table {
+margin-bottom:2em;
+}
+
+
+a.adminbutton {
+font-size:2em;
+padding:0 0.5em;
+}
+
+
+
+
+/* tabel input
+--------------------------------------------- */
+
+table.width95 input#project_name, table.width95 input#project_url {
+width:400px;
+font-size:1.3em;
+padding:0.5em;
+}
+
+.homemain {
+clear: both;
+}
+
+.homemain {
+	padding-left:20px;
+}
+
+.homemain p{
+	font-size:2em;
+	width:60%;
+	padding:1em 1em 1em 0;
+}
+
+.homemain li {
+	padding:1em 0 0 0;
+}
+
+.homemain li a {
+	font-size:4em;
+}
+
+td a.adminbutton {
+	background:none;
 }

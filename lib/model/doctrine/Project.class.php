@@ -18,4 +18,9 @@ class Project extends BaseProject
     return $banners;
   }
 
+  public function createUrl() {
+	  $url = "http://www.bannerproject.eu/project/showclient/id/" . $this->getId();
+	  return $url;
+  }
+
 }

@@ -8,10 +8,11 @@
   <link rel="shortcut icon" href="/favicon.ico" />
   <?php include_stylesheets() ?>
   <?php include_javascripts() ?>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache, must-revalidate">
 </head>
 
 <body>
-
   <div class="wrap group">
     <?php echo $sf_content ?>
   </div> <!-- /wrap -->

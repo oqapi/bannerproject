@@ -10,6 +10,23 @@
  */
 class bannerForm extends BasebannerForm
 {
+
+  public function getFonts()
+  {
+
+        $fonts = array();
+	if ($handle = opendir('/var/www/bannerproject.eu/sf_sandbox/fonts')) {
+		while (false !== ($file = readdir($handle))) {
+			if ($file != "." && $file != "..") {
+				$fonts[$file] = "$file";
+			}
+		}
+	        closedir($handle);
+	}
+
+	return $fonts;
+  }
+  
   public function configure()
   {
     #$this->useFields(array('project_id','image_url' ,'image_text','text_font'));
@@ -22,12 +39,23 @@ class bannerForm extends BasebannerForm
         'is_image' => true,
       )
     ));
+    $this->setWidget('text_font', new sfWidgetFormSelect(
+	    array(
+              'label' => 'Font',
+	      'choices' => $this->getFonts(),
+     )
+    ));
     $this->validatorSchema['image_url_delete'] = new sfValidatorPass(); 
     $this->setValidator('image_url', new sfValidatorFile(array(
       'required'        => false,  
       'mime_types' => 'web_images',
       'path' => sfConfig::get('sf_upload_dir').'/banner'))
     );
+
+  if ( $_GET['projectId'] != "" ) {
+      $this->setDefault('project_id', $_GET['projectId']);
+  }
+
   }
 
  protected function doSave ( $con = null )
@@ -56,14 +84,16 @@ class bannerForm extends BasebannerForm
     #get support for layered GIF images
     #first get rid of old files 
     $filename = basename($this->getObject()->getImageUrl());
-    $mask = sfConfig::get('sf_upload_dir').sprintf('/banner/frames/*%s',$filename);
-    array_map( "unlink", glob( $mask ) );
-    #and get rid of old bannerpositions
-    $bannerPositions = Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getObject()->getId());
-    foreach ($bannerPositions as $bannerPosition) {
-      $bannerPosition->delete();
-    }
 
+    if ($filename !== '') {
+      $mask = sfConfig::get('sf_upload_dir').sprintf('/banner/frames/*%s',$filename);
+      array_map( "unlink", glob( $mask ) );
+      #and get rid of old bannerpositions
+      $bannerPositions = Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($this->getObject()->getId());
+      foreach ($bannerPositions as $bannerPosition) {
+        $bannerPosition->delete();
+      }
+    }
     #see if there are layers
     #require(sfConfig::get('sf_root_dir').'/custom/GifSplit.class.php');
     #$sg = new GifSplit($filepath, 'BMP', sfConfig::get('sf_upload_dir').'/banner/frames/');
@@ -116,11 +146,19 @@ class bannerForm extends BasebannerForm
     }
     #get rid of frames (if they exist)
     $filename = basename($this->getObject()->getImageUrl());
-    $mask = sfConfig::get('sf_upload_dir').sprintf('/banner/frames/*%s',$filename);
-    array_map( "unlink", glob( $mask ) );
+    if ($filename !== '') {
+      $mask = sfConfig::get('sf_upload_dir').sprintf('/banner/frames/*%s',$filename);
+      array_map( "unlink", glob( $mask ) );
+    }
+  }
+
+  protected function recreateFrames(){
+	  $filename = basename($file->getSavedName());
+
+	     $filepath = sfConfig::get('sf_upload_dir').'/banner/'.$filename;
+	    $image = new Imagick($filepath);
+
+	     $image = $image->coalesceImages(); // the trick!
   }
  
-
-
-
 }

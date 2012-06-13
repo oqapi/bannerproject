@@ -43,7 +43,7 @@
 
 <textarea>
 <a href="<?php echo $clientBanner->getBannerUrl(); ?>"
-target="_blank"><img src="<?php echo $_SERVER['HTTP_HOST'].$clientBanner->getUrl($client->sha1ClientText()); ?>" style="border:none"></a>
+target="_blank"><img src="http://<?php echo $_SERVER['HTTP_HOST'].$clientBanner->getUrl($client->sha1ClientText()); ?>" style="border:none"></a>
 </textarea>
 
 <button name="submit" type="submit" name="Button" onClick="window.location.href='<?php echo "http://".$_SERVER['HTTP_HOST']."/client/downloadbanner/id/".$client->getId()."/bannerid/".$clientBanner->getId(); ?>';">Download banner</button>

@@ -1,3 +1,5 @@
+<ul class="topmenu"><li><a href="http://www.bannerproject.eu">Home</a></li>  <li><a href="/project">Projects</a></li> <li><a href="/banner">Banners</a></li><li><a href="/help.html">Help</a></li>  </ul>
+
 <table>
   <tbody>
     <tr>
@@ -12,6 +14,7 @@
       <th>Position index:</th>
       <td><?php echo $banner_position->getPositionIndex() ?></td>
     </tr>
+
     <tr>
       <th>Delay:</th>
       <td><?php echo $banner_position->getDelay() ?></td>

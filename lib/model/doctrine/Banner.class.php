@@ -50,4 +50,8 @@ class Banner extends BaseBanner
     return $path;
   }
 
+  public function getProjectName(){
+    $project = Doctrine_Core::getTable('Project')->find(array($this->getProjectId()));
+    return $project->getName();
+  }
 }

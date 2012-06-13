@@ -49,8 +49,11 @@ class Client extends BaseClient
           #$imgSize = @getimagesize ($banner->getFramePath($positionIndex,$this->sha1ClientText())); 
           #var_dump($imgSize);
           $color = $banner->getTextColor();
-          $text_color = imagecolorallocate($im, intval(substr($color,0,3)), intval(substr($color,3,3)), intval(substr($color,6,3)));
-          $font = sfConfig::get('sf_root_dir').'/fonts/Bliss2H.otf';
+          if(imagecolorstotal($im)>=255) 
+              $text_color = imagecolorclosest($im, hexdec('0x' . $color{0} . $color{1}), hexdec('0x' . $color{2} . $color{3}), hexdec('0x' . $color{4} . $color{5}));
+          else
+              $text_color = imagecolorallocate($im, hexdec('0x' . $color{0} . $color{1}), hexdec('0x' . $color{2} . $color{3}), hexdec('0x' . $color{4} . $color{5}));
+          $font = sfConfig::get('sf_root_dir').'/fonts/'.$banner->getTextFont();
           $fontSize = $banner->getFontSize();
           $x = $bannerPosition->getXPosition();
           $y = $bannerPosition->getYPosition();

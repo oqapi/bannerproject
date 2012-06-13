@@ -66,6 +66,15 @@ class projectActions extends sfActions
     $this->redirect('project/index');
   }
 
+  public function executeShowclient(sfWebRequest $request)
+  {
+	$this->project = Doctrine_Core::getTable('Project')->find(array($request->getParameter('id')));
+	$this->forward404Unless($this->project);
+	$this->form = new ClientForm();
+	$this->setTemplate('showclient');
+  }
+
+
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));

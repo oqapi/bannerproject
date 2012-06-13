@@ -9,11 +9,13 @@
     <tfoot>
       <tr>
 	<td colspan="2">
-          &nbsp;<a href="<?php echo url_for('project/index') ?>">Back to projects list</a>
-          <?php if (!$form->getObject()->isNew()): ?>
+	  <?php if (!$form->getObject()->isNew()): ?>
+          &nbsp;<a class="adminbutton" href="<?php echo url_for('project/show/?id='.$form->getObject()->getProjectId()) ?>">Back to project</a>
+	  <?php endif; ?>
+	  <?php if (!$form->getObject()->isNew()): ?>
             &nbsp;<?php echo link_to('Delete', 'banner/delete?id='.$form->getObject()->getId(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
           <?php endif; ?>
-          <input type="submit" value="Save" />
+	  <input type="submit" value="Save" />
         </td>
       </tr>
     </tfoot>
@@ -23,13 +25,13 @@
   </table>
   <table>
     <?php
-    $bannerPositions =
-    Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($form->getObject()->getId());
+    $bannerPositions = Doctrine_Core::getTable('BannerPosition')->getBannerPositionsFromBanner($form->getObject()->getId());
     foreach ($bannerPositions as $bannerPosition) { ?>
     <tr>
       <td>
         <?php echo link_to('edit','bannerposition/edit?id='.$bannerPosition->getId()); ?><img src="<?php echo $bannerPosition->showBannerPositionImage(); ?>">
       </td>
+      <td>Show label: <?php if ($bannerPosition->getShowLabel() == 1) { echo 'Yes';} else { echo 'no';} ?></td>
     </tr>
     <?php } ?>
   </table>

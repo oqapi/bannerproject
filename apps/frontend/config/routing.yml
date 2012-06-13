@@ -3,13 +3,13 @@
 
 # default rules
 
+showclient:
+        url: /project/showclient/*
+        param: { module: project, action: showclient }
+
 homepage:
   url:   /
   param: { module: client, action: new }
-
-#homepage2:
-#  url:   /project/showclient/id/1
-#  param: { module: client, action: new }
 
 # generic rules
 # please, remove them by adding more specific rules

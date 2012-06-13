@@ -1,3 +1,5 @@
+<?php header('P3P: CP="NOI ADM DEV COM NAV OUR STP"'); ?>
+
 <h1>Make sure visitors know where to find you</h1>
 <div class="banner group">
 <img src="/images/japan-200-x-200-v2-static.gif" alt="" />

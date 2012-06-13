@@ -1,3 +1,5 @@
+<ul class="topmenu"><li><a href="http://www.bannerproject.eu">Home</a></li>  <li><a href="/project">Projects</a></li> <li><a href="/banner">Banners</a></li><li><a href="/help.html">Help</a></li>  </ul>
+
 <h1>Banner positions List</h1>
 
 <table>
@@ -17,8 +19,8 @@
     <tr>
       <td><a href="<?php echo url_for('bannerposition/show?id='.$banner_position->getId()) ?>"><?php echo $banner_position->getId() ?></a></td>
       <td><?php echo $banner_position->getBannerId() ?></td>
-      <td><?php echo $banner_position->getPositionIndex() ?></td>
-      <td><?php echo $banner_position->getDelay() ?></td>
+      <td><?php echo $banner_position->getPositionIndex() ?></td>      
+<td><?php echo $banner_position->getDelay() ?></td>
       <td><?php echo $banner_position->getShowLabel() ?></td>
       <td><?php echo $banner_position->getXPosition() ?></td>
       <td><?php echo $banner_position->getYPosition() ?></td>
