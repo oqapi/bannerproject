@@ -15,7 +15,7 @@ class bannerForm extends BasebannerForm
   {
 
         $fonts = array();
-	if ($handle = opendir('/var/www/bannerproject.eu/sf_sandbox/fonts')) {
+	if ($handle = opendir(sfConfig::get('sf_root_dir').'/fonts')) {
 		while (false !== ($file = readdir($handle))) {
 			if ($file != "." && $file != "..") {
 				$fonts[$file] = "$file";
