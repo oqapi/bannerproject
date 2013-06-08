@@ -21,6 +21,7 @@ abstract class BaseBannerFormFilter extends BaseFormFilterDoctrine
       'text_color'      => new sfWidgetFormFilterInput(),
       'font_size'       => new sfWidgetFormFilterInput(),
       'additional_info' => new sfWidgetFormFilterInput(),
+      'banner_kind'     => new sfWidgetFormFilterInput(),
       'created_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
@@ -34,6 +35,7 @@ abstract class BaseBannerFormFilter extends BaseFormFilterDoctrine
       'text_color'      => new sfValidatorPass(array('required' => false)),
       'font_size'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'additional_info' => new sfValidatorPass(array('required' => false)),
+      'banner_kind'     => new sfValidatorPass(array('required' => false)),
       'created_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -64,6 +66,7 @@ abstract class BaseBannerFormFilter extends BaseFormFilterDoctrine
       'text_color'      => 'Text',
       'font_size'       => 'Number',
       'additional_info' => 'Text',
+      'banner_kind'     => 'Text',
       'created_at'      => 'Date',
       'updated_at'      => 'Date',
     );

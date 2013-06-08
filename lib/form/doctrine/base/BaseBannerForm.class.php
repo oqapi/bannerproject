@@ -24,6 +24,7 @@ abstract class BaseBannerForm extends BaseFormDoctrine
       'text_color'      => new sfWidgetFormInputText(),
       'font_size'       => new sfWidgetFormInputText(),
       'additional_info' => new sfWidgetFormTextarea(),
+      'banner_kind'      => new sfWidgetFormInputText(),
       'created_at'      => new sfWidgetFormDateTime(),
       'updated_at'      => new sfWidgetFormDateTime(),
     ));
@@ -38,6 +39,7 @@ abstract class BaseBannerForm extends BaseFormDoctrine
       'text_color'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'font_size'       => new sfValidatorInteger(array('required' => false)),
       'additional_info' => new sfValidatorString(array('required' => false)),
+      'banner_kind'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at'      => new sfValidatorDateTime(),
       'updated_at'      => new sfValidatorDateTime(),
     ));

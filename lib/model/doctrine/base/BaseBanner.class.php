@@ -15,6 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('Banner', 'doctrine');
  * @property string $text_color
  * @property integer $font_size
  * @property clob $additional_info
+ * @property string $banner_kind
  * @property Project $Project
  * @property Doctrine_Collection $Banners
  * 
@@ -26,6 +27,7 @@ Doctrine_Manager::getInstance()->bindComponent('Banner', 'doctrine');
  * @method string              getTextColor()       Returns the current record's "text_color" value
  * @method integer             getFontSize()        Returns the current record's "font_size" value
  * @method clob                getAdditionalInfo()  Returns the current record's "additional_info" value
+ * @method string              getBannerKind()      Returns the current record's "banner_kind" value
  * @method Project             getProject()         Returns the current record's "Project" value
  * @method Doctrine_Collection getBanners()         Returns the current record's "Banners" collection
  * @method Banner              setProjectId()       Sets the current record's "project_id" value
@@ -36,6 +38,7 @@ Doctrine_Manager::getInstance()->bindComponent('Banner', 'doctrine');
  * @method Banner              setTextColor()       Sets the current record's "text_color" value
  * @method Banner              setFontSize()        Sets the current record's "font_size" value
  * @method Banner              setAdditionalInfo()  Sets the current record's "additional_info" value
+ * @method Banner              setBannerKind()      Sets the current record's "banner_kind" value
  * @method Banner              setProject()         Sets the current record's "Project" value
  * @method Banner              setBanners()         Sets the current record's "Banners" collection
  * 
@@ -119,6 +122,15 @@ abstract class BaseBanner extends sfDoctrineRecord
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
+             ));
+        $this->hasColumn('banner_kind', 'string', null, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 255,
              ));
     }
 
