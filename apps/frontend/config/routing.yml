@@ -11,6 +11,10 @@ homepage:
   url:   /
   param: { module: client, action: new }
 
+help:
+  url:   /help/
+  param: { module: static, action: help }
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:

@@ -35,6 +35,7 @@
 <li>Copy & Paste the code to your own website</li>
 <li class="or">Or</li>
 <li>Click download banner to save the image.</li>
+<li class="or"><a href="/help#howto" target="_blank">How can I use this code?</a></li>
 </ul>
 </div>
 
