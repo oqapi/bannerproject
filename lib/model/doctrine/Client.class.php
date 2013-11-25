@@ -111,4 +111,11 @@ class Client extends BaseClient
     $file = $banner->getFileName();
     return $this->getDir().$file;
   }
+
+  public function getBannerKind($bannerId){
+    $banner = Doctrine_Core::getTable('Banner')->find(array($bannerId));
+    $bannerKind = $banner->getBannerKind();
+    return $bannerKind;
+  }
+
 }
